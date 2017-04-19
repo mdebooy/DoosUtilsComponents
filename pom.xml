@@ -4,7 +4,6 @@
     <groupId>eu.debooy.maven</groupId>
     <artifactId>tomee</artifactId>
     <version>7.0.3-SNAPSHOT</version>
-    <relativePath></relativePath>
   </parent>
   <groupId>eu.debooy.doosutils</groupId>
   <artifactId>doosutils-components</artifactId>
