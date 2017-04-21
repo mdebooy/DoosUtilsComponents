@@ -36,18 +36,21 @@ public class JNDI {
   private static final  Logger  LOGGER  =
       LoggerFactory.getLogger(JNDI.class);
 
+  private JNDI() {};
+
   public static class JNDINaam {
     private StringBuilder jndi;
     private static final  String INTERFACE_SEPARATOR  = "!";
     private static final  String PREFIX               = "java:global";
     private static final  String SEPARATOR            = "/";
-    private String      appNaam;
-    private String      beanNaam;
-    private String      interfaceNaam;
-    private String      interfaceSeparator;
-    private String      moduleNaam;
-    private String      separator;
-    private String      prefix;
+
+    private String  appNaam;
+    private String  beanNaam;
+    private String  interfaceNaam;
+    private String  interfaceSeparator;
+    private String  moduleNaam;
+    private String  separator;
+    private String  prefix;
 
     public JNDINaam() {
       appNaam             = (String) ServiceLocator.getInstance()

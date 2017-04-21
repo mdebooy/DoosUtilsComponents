@@ -42,6 +42,9 @@ public final class ServiceLocator {
   private static final  Logger  LOGGER  =
       LoggerFactory.getLogger(ServiceLocator.class);
 
+  private static final String     CTX_ERROR     = "Error in CTX lookup";
+  private static final String     PROVIDER_URL  = "java.naming.provider.url";
+
   private static  List<Context>   contexts  = new ArrayList<Context>();
   private static  ServiceLocator  locator   = new ServiceLocator();
 
@@ -49,16 +52,16 @@ public final class ServiceLocator {
     Properties  env = new Properties();
     env.put("java.naming.factory.initial",
             "org.apache.openejb.client.RemoteInitialContextFactory");
-    env.put("java.naming.provider.url", "http://127.0.0.1:8080/tomee/ejb");
+    env.put(PROVIDER_URL, "http://127.0.0.1:8080/tomee/ejb");
     try {
       contexts.add(new InitialContext(env));
     } catch (NamingException e) {
-      LOGGER.error("Error in CTX lookup", e);
+      LOGGER.error(CTX_ERROR, e);
     }
   }
 
   public ServiceLocator addContext(Properties env) {
-    if ((env == null) || (!(env.containsKey("java.naming.provider.url")))) {
+    if ((env == null) || (!(env.containsKey(PROVIDER_URL)))) {
       throw new IllegalArgumentException(
           "addContext: Context environment mag niet null zijn en moet "
           + "minstens 1 'provider URL' hebben.");
@@ -67,7 +70,7 @@ public final class ServiceLocator {
       Context context = new InitialContext(env);
       contexts.add(context);
     } catch (NamingException ne) {
-      LOGGER.error("Error in CTX lookup", ne);
+      LOGGER.error(CTX_ERROR, ne);
     }
 
     return locator;
@@ -81,7 +84,7 @@ public final class ServiceLocator {
    */
   public ServiceLocator forceInstance(Properties env) {
     LOGGER.warn("Default InitialContext wordt overschreven.");
-    if ((env == null) || (!(env.containsKey("java.naming.provider.url")))) {
+    if ((env == null) || (!(env.containsKey(PROVIDER_URL)))) {
       throw new IllegalArgumentException(
           "forceInstance: Context environment mag niet null zijn en moet "
           + "minstens 1 'provider URL' hebben.");
@@ -94,7 +97,7 @@ public final class ServiceLocator {
         contexts.add(initialContext);
       }
     } catch (NamingException ne) {
-      LOGGER.error("Error in CTX lookup", ne);
+      LOGGER.error(CTX_ERROR, ne);
     }
 
     return locator;
@@ -204,7 +207,7 @@ public final class ServiceLocator {
     try {
       contexts.add(new InitialContext());
     } catch (NamingException e) {
-      LOGGER.error("Error in CTX lookup", e);
+      LOGGER.error(CTX_ERROR, e);
     }
     locator   = new ServiceLocator();
   }
