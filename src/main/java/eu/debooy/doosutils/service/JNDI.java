@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Marco de Booij
  */
-public class JNDI {
+public final class JNDI {
   private static final  Logger  LOGGER  =
       LoggerFactory.getLogger(JNDI.class);
 

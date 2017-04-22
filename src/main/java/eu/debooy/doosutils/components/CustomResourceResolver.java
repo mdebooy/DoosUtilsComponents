@@ -27,7 +27,7 @@ import com.sun.facelets.impl.ResourceResolver;
  */
 public class CustomResourceResolver extends DefaultResourceResolver
     implements ResourceResolver {
-  @Override
+
   public URL resolveUrl(String path) {
     URL resourceUrl = super.resolveUrl(path);
 
