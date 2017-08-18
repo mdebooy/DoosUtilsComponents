@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html  lang="#{gebruiker.locale.language}"
+      xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets">
+  <ui:composition xmlns:f="http://java.sun.com/jsf/core"
+                  xmlns:t="http://myfaces.apache.org/tomahawk">
+    <div class="input-group date" data-provide="datepicker" data-date-autoclose="true" data-date-format="dd/mm/yyyy">
+      <t:inputText id="#{id}" styleClass="form-control mask" value="#{value}" readonly="#{readonly}">
+        <f:convertDateTime type="date" pattern="dd/MM/yyyy" timeZone="#{gebruiker.timeZone}" />
+      </t:inputText>
+      <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
+    </div>
+  </ui:composition>
+</html>

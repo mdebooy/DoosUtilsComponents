@@ -14,6 +14,10 @@
     <source>/tags/Confirmatie.xhtml</source>
   </tag>
   <tag>
+    <tag-name>datum</tag-name>
+    <source>/tags/Datum.xhtml</source>
+  </tag>
+  <tag>
     <tag-name>footer</tag-name>
     <source>/tags/Footer.xhtml</source>
   </tag>
