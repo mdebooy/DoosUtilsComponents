@@ -16,6 +16,7 @@
  */
 package eu.debooy.doosutils.components;
 
+import java.util.Arrays;
 
 /**
  * @author Marco de Booij
@@ -30,11 +31,6 @@ public class Message {
   private String    severity;
   private Object[]  params;
 
-  /**
-   * @param message
-   * @param messagetype
-   * @param type
-   */
   public Message(String severity, String message, Object... params) {
     super();
     this.severity = severity;
@@ -42,45 +38,32 @@ public class Message {
     this.message  = message;
   }
 
-  /**
-   * @return de message
-   */
   public String getMessage() {
     return message;
   }
 
-  /**
-   * @return de params
-   */
   public Object[] getParams() {
     return params.clone();
   }
 
-  /**
-   * @return de severity
-   */
   public String getSeverity() {
     return severity;
   }
 
-  /**
-   * @param message de waarde van message
-   */
   public void setMessage(String message) {
     this.message  = message;
   }
 
-  /**
-   * @param message de params van message
-   */
   public void setParams(Object... params) {
     this.params = params.clone();
   }
 
-  /**
-   * @param severity de waarde van severity
-   */
   public void setSeverity(String severity) {
     this.severity = severity;
+  }
+
+  public String toString() {
+    return "message=" + message + ", params=" + Arrays.toString(params)
+           + ", severity=" + severity;
   }
 }
