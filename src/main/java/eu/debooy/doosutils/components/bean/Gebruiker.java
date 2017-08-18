@@ -28,7 +28,6 @@ import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -59,8 +58,6 @@ public class Gebruiker implements Serializable {
   private static  String          versie;
   private static  String          bouwdatum;
 
-  private ExternalContext externalContext = null;
-  private FacesContext    facesContext    = null;
   private Locale          locale          = null;
   private String          userId          = null;
   private String          userName        = null;
@@ -139,39 +136,14 @@ public class Gebruiker implements Serializable {
   }
 
   /**
-   * Haal de ExternalContext op.
-   * 
-   * @return ExternalContext
-   */
-  protected ExternalContext getExternalContext() {
-    if (null == externalContext) {
-      externalContext = getFacesContext().getExternalContext();
-    }
-
-    return externalContext;
-  }
-
-  /**
-   * Haal de FacesContext op.
-   * 
-   * @return FacesContext
-   */
-  protected FacesContext getFacesContext() {
-    if (null == facesContext) {
-      facesContext  = FacesContext.getCurrentInstance();
-    }
-
-    return facesContext;
-  }
-
-  /**
    * Geef de Locale zodat de taal van de gebruiker bekend is.
    * 
    * @return Locale
    */
   public Locale getLocale() {
     if (null == locale) {
-      locale  = getExternalContext().getRequestLocale();
+      locale  = FacesContext.getCurrentInstance()
+                            .getExternalContext().getRequestLocale();
     }
 
     return locale;
@@ -194,7 +166,8 @@ public class Gebruiker implements Serializable {
    */
   public String getUserId() {
     if (null == userId) {
-      userId  = getExternalContext().getRemoteUser();
+      userId  = FacesContext.getCurrentInstance()
+                            .getExternalContext().getRemoteUser();
       if (null == userId) {
         userId  = "";
       }
@@ -213,7 +186,8 @@ public class Gebruiker implements Serializable {
   public String getUserName() {
     if (null == userName) {
       UserPrincipal principal =
-          (UserPrincipal) getExternalContext().getUserPrincipal();
+          (UserPrincipal) FacesContext.getCurrentInstance()
+                                      .getExternalContext().getUserPrincipal();
       if (null != principal) {
         userName  = principal.getVolledigeNaam();
       }
