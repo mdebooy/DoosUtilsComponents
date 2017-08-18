@@ -19,67 +19,59 @@ package eu.debooy.doosutils.components;
 import java.io.Serializable;
 
 
-
 /**
  * @author Marco de Booij
  */
-public class Applicatieparameter implements Serializable, Cloneable {
-  private static final  long    serialVersionUID  = 1L;
+public class Applicatieparameter implements Serializable {
+  private static final  long  serialVersionUID  = 1L;
 
   private String  parameter;
   private String  sleutel;
   private String  waarde;
 
+
+  public Applicatieparameter(Applicatieparameter applicatieparameter) {
+    parameter = applicatieparameter.parameter;
+    sleutel   = applicatieparameter.sleutel;
+    waarde    = applicatieparameter.waarde;
+  }
   public Applicatieparameter(String parameter, String sleutel, String waarde) {
     this.parameter  = parameter;
     this.sleutel    = sleutel;
     this.waarde     = waarde;
   }
 
-  @Override
+  @Deprecated
   public Object clone() throws CloneNotSupportedException {
     return (Applicatieparameter) super.clone();
   }
 
-  /**
-   * @return de parameter
-   */
   public String getParameter() {
     return parameter;
   }
 
-  /**
-   * @return de sleutel
-   */
   public String getSleutel() {
     return sleutel;
   }
 
-  /**
-   * @return de waarde
-   */
   public String getWaarde() {
     return waarde;
   }
 
-  /**
-   * @param parameter de waarde van parameter
-   */
   public void setParameter(String parameter) {
     this.parameter = parameter;
   }
 
-  /**
-   * @param sleutel de waarde van sleutel
-   */
   public void setSleutel(String sleutel) {
     this.sleutel = sleutel;
   }
 
-  /**
-   * @param waarde de waarde van waarde
-   */
   public void setWaarde(String waarde) {
     this.waarde = waarde;
+  }
+
+  public String toString() {
+    return "parameter=" + parameter + ", sleutel=" + sleutel
+           + ", waarde=" + waarde;
   }
 }
