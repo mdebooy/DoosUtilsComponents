@@ -13,8 +13,8 @@
   <description>Utility classes voor DOOS Web Applicaties (components).</description>
   <inceptionYear>2009</inceptionYear>
   <scm>
-    <developerConnection>scm:git:ssh://ptah.debooy.eu/srv/git/debooy/doosutils.git/doosutils-components</developerConnection>
-    <connection>scm:git:ssh://ptah.debooy.eu/srv/git/debooy/doosutils.git/doosutils-components</connection>
+    <developerConnection>scm:git:ssh://ptah.debooy.eu/srv/git/debooy/DoosUtilsComponents.git</developerConnection>
+    <connection>scm:git:ssh://ptah.debooy.eu/srv/git/debooy/DoosUtilsComponents.git</connection>
   </scm>
 
   <developers>
