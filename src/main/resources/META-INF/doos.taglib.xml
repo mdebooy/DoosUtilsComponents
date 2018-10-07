@@ -26,6 +26,14 @@
     <source>/tags/Listbox.xhtml</source>
   </tag>
   <tag>
+    <tag-name>loggingtable</tag-name>
+    <source>/tags/LoggingTable.xhtml</source>
+  </tag>
+  <tag>
+    <tag-name>logitem</tag-name>
+    <source>/tags/LogItem.xhtml</source>
+  </tag>
+  <tag>
     <tag-name>menu</tag-name>
     <source>/tags/Menu.xhtml</source>
   </tag>

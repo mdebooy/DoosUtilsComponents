@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
+import java.security.Principal;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.jar.Attributes;
@@ -178,18 +179,18 @@ public class Gebruiker implements Serializable {
 
   /**
    * Geef de volledige naam van de gebruiker. Indien de gebruiker niet is
-   * aangemeld wordt een lege String gegeven. Di om te voorkomen dat de
+   * aangemeld wordt een lege String gegeven. Dit om te voorkomen dat de
    * methode die oproept een NullPointerException krijgt.
    * 
    * @return String userName
    */
   public String getUserName() {
     if (null == userName) {
-      UserPrincipal principal =
-          (UserPrincipal) FacesContext.getCurrentInstance()
-                                      .getExternalContext().getUserPrincipal();
-      if (null != principal) {
-        userName  = principal.getVolledigeNaam();
+      Principal principal = FacesContext.getCurrentInstance()
+                                        .getExternalContext()
+                                        .getUserPrincipal();
+      if (null != principal && principal instanceof UserPrincipal) {
+        userName  = ((UserPrincipal) principal).getVolledigeNaam();
       }
     }
     if (null == userName) {

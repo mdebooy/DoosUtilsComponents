@@ -3,7 +3,7 @@
   <parent>
     <groupId>eu.debooy.maven</groupId>
     <artifactId>tomee</artifactId>
-    <version>7.0.4</version>
+    <version>7.0.5-SNAPSHOT</version>
   </parent>
   <groupId>eu.debooy.doosutils</groupId>
   <artifactId>doosutils-components</artifactId>
