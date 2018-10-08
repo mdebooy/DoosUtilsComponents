@@ -18,7 +18,6 @@ package eu.debooy.doosutils.components.bean;
 
 import eu.debooy.jaas.UserPrincipal;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
@@ -98,17 +97,8 @@ public class Gebruiker implements Serializable {
                                        .toString());
 
       }
-      try {
-        manifest        = new Manifest(manifestUrl.openStream());
-      } catch (FileNotFoundException e) {
-        classContainer  =
-          classContainer.substring(0, classContainer.indexOf(WEB_INF));
-        manifestUrl     =
-          new URL((new StringBuilder()).append(classContainer)
-                                       .append(MANIFEST)
-                                       .toString());
-        manifest        = new Manifest(manifestUrl.openStream());
-      }
+      manifest        = new Manifest(manifestUrl.openStream());
+
       Attributes  attr  = manifest.getMainAttributes();
       versie    = attr.getValue("Implementation-Version");
       bouwdatum = attr.getValue("Build-Time");
