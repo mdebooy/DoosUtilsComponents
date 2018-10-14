@@ -2,7 +2,10 @@
 <html  lang="#{gebruiker.locale.language}"
       xmlns="http://www.w3.org/1999/xhtml"
    xmlns:ui="http://java.sun.com/jsf/facelets">
-  <ui:composition>
+  <ui:composition xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:if test="#{empty buttontext}">
+      <c:set var="buttontext" scope="session" value="button.delete" />
+    </c:if>
     <div class="modal fade" id="bevestiging" tabindex="-1" role="dialog" aria-labelledby="bevestiging" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -18,7 +21,7 @@
             <h4 class="text-center">#{i18nTeksten.tekst('tekst.confirmatie')}</h4>
           </div>
           <div class="modal-footer">
-            <button id="btnDelete" type="button" class="btn btn-warning" data-dismiss="modal" onclick="return false;">#{i18nTeksten.tekst('button.delete')}</button>
+            <button id="btnDelete" type="button" class="btn btn-warning" data-dismiss="modal" onclick="return false;">#{i18nTeksten.tekst(buttontext)}</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">#{i18nTeksten.tekst('button.cancel')}</button>
           </div>
         </div>
