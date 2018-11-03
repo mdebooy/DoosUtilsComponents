@@ -6,7 +6,7 @@
                   xmlns:f="http://java.sun.com/jsf/core"
                   xmlns:t="http://myfaces.apache.org/tomahawk">
     <c:if test="#{!readonly}">
-      <t:selectOneMenu id="#{id}" styleClass="form-control" value="#{value}">
+      <t:selectOneMenu id="#{id}" styleClass="form-control form-control-sm" value="#{value}">
         <c:if test="#{!empty converter}">
           <f:converter converterId="#{converter}" />
         </c:if>

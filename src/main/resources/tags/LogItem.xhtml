@@ -6,49 +6,49 @@
    xmlns:ui="http://java.sun.com/jsf/facelets">
   <ui:composition>
             <div class="form-group form-group-sm row">
-              <label for="logtime" class="col-2 label control-label">#{i18nTeksten.tekst('label.logtime')}</label>
+              <label for="logtime" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.logtime')}</label>
               <div class="col-3">
                 <t:inputText styleClass="form-control form-control-sm" value="#{log.logtime}" maxlength="25" size="25" readonly="true">
                   <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss.SSS" timeZone="#{gebruiker.timeZone}" />
                 </t:inputText>
               </div>
-              <label for="lvl" class="col-2 label control-label">#{i18nTeksten.tekst('label.loglevel')}</label>
+              <label for="lvl" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.loglevel')}</label>
               <div class="col-3">
-                <t:inputText id="lvl" styleClass="form-control" value="#{log.lvl}" maxlength="15" size="15" readonly="true" />
+                <t:inputText id="lvl" styleClass="form-control form-control-sm" value="#{log.lvl}" maxlength="15" size="15" readonly="true" />
               </div>
             </div>
             <div class="form-group form-group-sm row">
-              <label for="loggerclass" class="col-2 label control-label">#{i18nTeksten.tekst('label.loggerclass')}</label>
+              <label for="loggerclass" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.loggerclass')}</label>
               <div class="col-10">
-                <t:inputText id="loggerclass" styleClass="form-control" value="#{log.loggerclass}" maxlength="100" size="100" readonly="true" />
+                <t:inputText id="loggerclass" styleClass="form-control form-control-sm" value="#{log.loggerclass}" maxlength="100" size="100" readonly="true" />
               </div>
             </div>
             <div class="form-group form-group-sm row">
-              <label for="sourceclass" class="col-2 label control-label">#{i18nTeksten.tekst('label.sourceclass')}</label>
+              <label for="sourceclass" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.sourceclass')}</label>
               <div class="col-10">
-                <t:inputText id="sourceclass" styleClass="form-control" value="#{log.sourceclass}" maxlength="100" size="100" readonly="true" />
+                <t:inputText id="sourceclass" styleClass="form-control form-control-sm" value="#{log.sourceclass}" maxlength="100" size="100" readonly="true" />
               </div>
             </div>
             <div class="form-group form-group-sm row">
-              <label for="sourcemethod" class="col-2 label control-label">#{i18nTeksten.tekst('label.sourcemethod')}</label>
+              <label for="sourcemethod" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.sourcemethod')}</label>
               <div class="col-10">
-                <t:inputText id="sourcemethod" styleClass="form-control" value="#{log.sourcemethod}" maxlength="100" size="100" readonly="true" />
+                <t:inputText id="sourcemethod" styleClass="form-control form-control-sm" value="#{log.sourcemethod}" maxlength="100" size="100" readonly="true" />
               </div>
             </div>
             <div class="form-group form-group-sm row">
-              <label for="message" class="col-2 label control-label">#{i18nTeksten.tekst('label.message')}</label>
+              <label for="message" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.message')}</label>
               <div class="col-10">
                 <t:inputTextarea styleClass="form-control form-control-sm" value="#{log.message}" cols="100" rows="5" readonly="true" />
               </div>
             </div>
             <div class="form-group form-group-sm row">
-              <label for="seq" class="col-2 label control-label">#{i18nTeksten.tekst('label.seq')}</label>
+              <label for="seq" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.seq')}</label>
               <div class="col-3">
-                <t:inputText id="seq" styleClass="form-control" value="#{log.seq}" maxlength="15" size="15" readonly="true" />
+                <t:inputText id="seq" styleClass="form-control form-control-sm" value="#{log.seq}" maxlength="15" size="15" readonly="true" />
               </div>
-              <label for="threadId" class="col-2 label control-label">#{i18nTeksten.tekst('label.threadId')}</label>
+              <label for="threadId" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.threadId')}</label>
               <div class="col-3">
-                <t:inputText id="threadId" styleClass="form-control" value="#{log.threadId}" maxlength="15" size="15" readonly="true" />
+                <t:inputText id="threadId" styleClass="form-control form-control-sm" value="#{log.threadId}" maxlength="15" size="15" readonly="true" />
               </div>
             </div>
   </ui:composition>
