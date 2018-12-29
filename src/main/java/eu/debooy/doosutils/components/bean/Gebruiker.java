@@ -16,6 +16,7 @@
  */
 package eu.debooy.doosutils.components.bean;
 
+import eu.debooy.doosutils.DoosUtils;
 import eu.debooy.jaas.UserPrincipal;
 
 import java.io.IOException;
@@ -55,12 +56,13 @@ public class Gebruiker implements Serializable {
   private static final  String    VERSION_UNSTABLE  = "UNSTABLE";
   private static final  String    WEB_INF           = "/WEB-INF/lib";
 
-  private static  String          versie;
-  private static  String          bouwdatum;
+  private static  String  versie;
+  private static  String  bouwdatum;
 
-  private Locale          locale          = null;
-  private String          userId          = null;
-  private String          userName        = null;
+  private String  email     = null;      
+  private Locale  locale    = null;
+  private String  userId    = null;
+  private String  userName  = null;
 
   static {
     buildDetails();
@@ -70,9 +72,6 @@ public class Gebruiker implements Serializable {
     LOGGER.trace("Gebruiker gemaakt.");
   }
 
-  /**
-   * Haal de Build details (datum en versie) op uit de MANIFEST.MF.
-   */
   private static void buildDetails() {
     try {
       URL       manifestUrl     = null;
@@ -108,29 +107,27 @@ public class Gebruiker implements Serializable {
     }
   }
 
-  /**
-   * Geef de Build Datum van de applicatie.
-   * 
-   * @return String
-   */
   public String getBouwdatum() {
     return bouwdatum;
   }
 
-  /**
-   * Geeft de Build Versie van de applicatie.
-   * 
-   * @return String
-   */
   public String getVersie() {
     return versie;
   }
 
-  /**
-   * Geef de Locale zodat de taal van de gebruiker bekend is.
-   * 
-   * @return Locale
-   */
+  public String getEmail() {
+    if (null == email) {
+      Principal principal = FacesContext.getCurrentInstance()
+                                        .getExternalContext()
+                                        .getUserPrincipal();
+      if (null != principal && principal instanceof UserPrincipal) {
+        email  = DoosUtils.nullToEmpty(((UserPrincipal) principal).getEmail());
+      }
+    }
+
+    return email;
+  }
+
   public Locale getLocale() {
     if (null == locale) {
       locale  = FacesContext.getCurrentInstance()
@@ -140,79 +137,44 @@ public class Gebruiker implements Serializable {
     return locale;
   }
 
-  /**
-   * Geef de Tijdszone.
-   * 
-   * @return TimeZone
-   */
   // TODO Zorg voor de TimeZone van de gebruiker.
   public TimeZone getTimeZone() {
     return TimeZone.getDefault();
   }
 
-  /**
-   * Geef de user-id.
-   * 
-   * @return String userId
-   */
   public String getUserId() {
     if (null == userId) {
-      userId  = FacesContext.getCurrentInstance()
-                            .getExternalContext().getRemoteUser();
-      if (null == userId) {
-        userId  = "";
-      }
+      userId  = DoosUtils.nullToEmpty(FacesContext.getCurrentInstance()
+                                                  .getExternalContext()
+                                                  .getRemoteUser());
     }
 
     return userId;
   }
 
-  /**
-   * Geef de volledige naam van de gebruiker. Indien de gebruiker niet is
-   * aangemeld wordt een lege String gegeven. Dit om te voorkomen dat de
-   * methode die oproept een NullPointerException krijgt.
-   * 
-   * @return String userName
-   */
   public String getUserName() {
     if (null == userName) {
       Principal principal = FacesContext.getCurrentInstance()
                                         .getExternalContext()
                                         .getUserPrincipal();
       if (null != principal && principal instanceof UserPrincipal) {
-        userName  = ((UserPrincipal) principal).getVolledigeNaam();
+        userName  = DoosUtils
+            .nullToValue(((UserPrincipal) principal).getVolledigeNaam(),
+                         getUserId());
       }
-    }
-    if (null == userName) {
-      userName  = getUserId();
     }
 
     return userName;
   }
 
-  /**
-   * Zet de Locale als die anders moet zijn dan die van de browser.
-   * 
-   * @param Locale de waarde van locale
-   */
   public void setLocale(Locale locale) {
     this.locale   = locale;
   }
 
-  /**
-   * Zet de user-id als die niet uit de UserPrincipal gehaald kan worden.
-   * 
-   * @param String de waarde van userId
-   */
   public void setUserId(String userId) {
     this.userId   = userId;
   }
 
-  /**
-   * Zet de user-name als die niet uit de UserPrincipal gehaald kan worden.
-   * 
-   * @param String de waarde van userName
-   */
   public void setUserName(String userName) {
     this.userName = userName;
   }
