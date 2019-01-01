@@ -8,14 +8,14 @@
   <groupId>eu.debooy.doosutils</groupId>
   <artifactId>doosutils-components</artifactId>
   <packaging>jar</packaging>
-  <version>2.2.0</version>
+  <version>2.2.1-SNAPSHOT</version>
   <name>Utility classes voor DOOS Applicaties (components)</name>
   <description>Utility classes voor DOOS Web Applicaties (components).</description>
   <inceptionYear>2009</inceptionYear>
   <scm>
     <developerConnection>scm:git:ssh://ptah.debooy.eu/srv/git/debooy/DoosUtilsComponents.git</developerConnection>
     <connection>scm:git:ssh://ptah.debooy.eu/srv/git/debooy/DoosUtilsComponents.git</connection>
-    <tag>doosutils-components-2.2.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <developers>
