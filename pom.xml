@@ -3,14 +3,14 @@
   <parent>
     <groupId>eu.debooy.maven</groupId>
     <artifactId>tomee</artifactId>
-    <version>7.1.0</version>
+    <version>8.0.0-SNAPSHOT</version>
   </parent>
   <groupId>eu.debooy.doosutils</groupId>
   <artifactId>doosutils-components</artifactId>
   <packaging>jar</packaging>
   <version>2.2.1-SNAPSHOT</version>
-  <name>Utility classes voor DOOS Applicaties (components)</name>
-  <description>Utility classes voor DOOS Web Applicaties (components).</description>
+  <name>Utility classes voor dOOS Applicaties (components)</name>
+  <description>Components utility classes voor dOOS Web Applicaties.</description>
   <inceptionYear>2009</inceptionYear>
   <scm>
     <developerConnection>scm:git:ssh://ptah.debooy.eu/srv/git/debooy/DoosUtilsComponents.git</developerConnection>
@@ -23,7 +23,7 @@
       <name>Marco de Booij</name>
       <id>booymar</id>
       <email>marco.developer@debooy.eu</email>
-      <organization>DOOS</organization>
+      <organization>dOOS</organization>
       <roles>
         <role>Project Manager</role>
         <role>Java Developer</role>
