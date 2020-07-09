@@ -18,11 +18,9 @@ package eu.debooy.doosutils.service;
 
 import eu.debooy.doosutils.errorhandling.exception.base.DoosError;
 import eu.debooy.doosutils.errorhandling.exception.base.DoosLayer;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NameClassPair;
@@ -30,7 +28,6 @@ import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 import javax.rmi.PortableRemoteObject;
 import javax.sql.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,7 +75,7 @@ public final class ServiceLocator {
 
   /**
    * Verander de context.
-   * 
+   *
    * @param env
    * @return
    */
@@ -105,7 +102,7 @@ public final class ServiceLocator {
 
   /**
    * Zoek de DataSource
-   * 
+   *
    * @param jndi
    * @return
    * @throws ServiceLocatorException
@@ -131,7 +128,7 @@ public final class ServiceLocator {
 
   /**
    * Krijg de Service Locator.
-   * 
+   *
    * @return
    */
   public static ServiceLocator getInstance() {
@@ -139,7 +136,7 @@ public final class ServiceLocator {
   }
 
   /**
-   * 
+   *
    * @param string
    * @param context
    * @throws NamingException
@@ -160,19 +157,21 @@ public final class ServiceLocator {
 
   /**
    * Zoek in de JNDI tree.
-   * 
+   *
    * @param clazz
    * @param jndiName
    * @return De local of remote interface van de bean
    */
   public <T> T lookup(Class<T> clazz, String jndiName) {
     Object  bean  = lookup(jndiName);
+
+    // TODO Zoek een betere oplossing. Bestaat niet meer in Java 11.
     return clazz.cast(PortableRemoteObject.narrow(bean, clazz));
   }
 
   /**
    * Zoek in de JNDI tree.
-   * 
+   *
    * @param jndi
    * @return
    */

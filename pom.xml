@@ -77,5 +77,11 @@
       <groupId>org.apache.myfaces.core</groupId>
       <artifactId>myfaces-api</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.glassfish.corba</groupId>
+      <artifactId>glassfish-corba-orb</artifactId>
+      <version>4.2.2</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
 </project>
