@@ -18,8 +18,6 @@ package eu.debooy.doosutils.service;
 
 import eu.debooy.doosutils.errorhandling.exception.base.DoosError;
 import eu.debooy.doosutils.errorhandling.exception.base.DoosLayer;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -40,73 +38,62 @@ public final class ServiceLocator {
       LoggerFactory.getLogger(ServiceLocator.class);
 
   private static final String     CTX_ERROR     = "Error in CTX lookup";
-  private static final String     PROVIDER_URL  = "java.naming.provider.url";
 
-  private static  List<Context>   contexts  = new ArrayList<Context>();
+  private static  Context         context;
+//  private static  List<Context>   contexts  = new ArrayList<Context>();
   private static  ServiceLocator  locator   = new ServiceLocator();
 
   private ServiceLocator() {
     Properties  env = new Properties();
-    env.put("java.naming.factory.initial",
+    env.put(Context.INITIAL_CONTEXT_FACTORY,
             "org.apache.openejb.client.RemoteInitialContextFactory");
-    env.put(PROVIDER_URL, "http://127.0.0.1:8080/tomee/ejb");
+//    env.put(Context.PROVIDER_URL, "http://127.0.0.1:8080/tomee/ejb");
+    env.put(Context.PROVIDER_URL, "ejbd://localhost:4201/");
     try {
-      contexts.add(new InitialContext(env));
+      context = new InitialContext(env);
+//      contexts.add(context);
     } catch (NamingException e) {
       LOGGER.error(CTX_ERROR, e);
     }
   }
 
-  public ServiceLocator addContext(Properties env) {
-    if ((env == null) || (!(env.containsKey(PROVIDER_URL)))) {
-      throw new IllegalArgumentException(
-          "addContext: Context environment mag niet null zijn en moet "
-          + "minstens 1 'provider URL' hebben.");
-    }
-    try {
-      Context context = new InitialContext(env);
-      contexts.add(context);
-    } catch (NamingException ne) {
-      LOGGER.error(CTX_ERROR, ne);
-    }
+//  public ServiceLocator addContext(Properties env) {
+//    if ((env == null) || (!(env.containsKey(Context.PROVIDER_URL)))) {
+//      throw new IllegalArgumentException(
+//          "addContext: Context environment mag niet null zijn en moet "
+//          + "minstens 1 'provider URL' hebben.");
+//    }
+//    try {
+//      Context context = new InitialContext(env);
+//      contexts.add(context);
+//    } catch (NamingException ne) {
+//      LOGGER.error(CTX_ERROR, ne);
+//    }
+//
+//    return locator;
+//  }
 
-    return locator;
-  }
+//  public ServiceLocator forceInstance(Properties env) {
+//    LOGGER.warn("Default InitialContext wordt overschreven.");
+//    if ((env == null) || (!(env.containsKey(Context.PROVIDER_URL)))) {
+//      throw new IllegalArgumentException(
+//          "forceInstance: Context environment mag niet null zijn en moet "
+//          + "minstens 1 'provider URL' hebben.");
+//    }
+//    try {
+//      Context initialContext = new InitialContext(env);
+//      if (contexts.size() > 0) {
+//        contexts.set(0, initialContext);
+//      } else {
+//        contexts.add(initialContext);
+//      }
+//    } catch (NamingException ne) {
+//      LOGGER.error(CTX_ERROR, ne);
+//    }
+//
+//    return locator;
+//  }
 
-  /**
-   * Verander de context.
-   *
-   * @param env
-   * @return
-   */
-  public ServiceLocator forceInstance(Properties env) {
-    LOGGER.warn("Default InitialContext wordt overschreven.");
-    if ((env == null) || (!(env.containsKey(PROVIDER_URL)))) {
-      throw new IllegalArgumentException(
-          "forceInstance: Context environment mag niet null zijn en moet "
-          + "minstens 1 'provider URL' hebben.");
-    }
-    try {
-      Context initialContext = new InitialContext(env);
-      if (contexts.size() > 0) {
-        contexts.set(0, initialContext);
-      } else {
-        contexts.add(initialContext);
-      }
-    } catch (NamingException ne) {
-      LOGGER.error(CTX_ERROR, ne);
-    }
-
-    return locator;
-  }
-
-  /**
-   * Zoek de DataSource
-   *
-   * @param jndi
-   * @return
-   * @throws ServiceLocatorException
-   */
   public DataSource getDataSource(String jndi) {
     if (jndi == null) {
       throw new IllegalArgumentException(
@@ -126,21 +113,10 @@ public final class ServiceLocator {
     return datasource;
   }
 
-  /**
-   * Krijg de Service Locator.
-   *
-   * @return
-   */
   public static ServiceLocator getInstance() {
     return locator;
   }
 
-  /**
-   *
-   * @param string
-   * @param context
-   * @throws NamingException
-   */
   private void listContext(String string, Context context)
       throws NamingException {
     NamingEnumeration<NameClassPair>  pairs = context.list("");
@@ -155,13 +131,6 @@ public final class ServiceLocator {
     }
   }
 
-  /**
-   * Zoek in de JNDI tree.
-   *
-   * @param clazz
-   * @param jndiName
-   * @return De local of remote interface van de bean
-   */
   public <T> T lookup(Class<T> clazz, String jndiName) {
     Object  bean  = lookup(jndiName);
 
@@ -169,15 +138,9 @@ public final class ServiceLocator {
     return clazz.cast(PortableRemoteObject.narrow(bean, clazz));
   }
 
-  /**
-   * Zoek in de JNDI tree.
-   *
-   * @param jndi
-   * @return
-   */
   public Object lookup(String jndi) {
     LOGGER.debug("Zoek JNDI: " + jndi);
-    for (Context context : contexts) {
+//    for (Context context : contexts) {
       if (LOGGER.isDebugEnabled()) {
         try {
           listContext("", context);
@@ -193,21 +156,18 @@ public final class ServiceLocator {
         LOGGER.error("JNDI: " + jndi + " [" + e.getMessage() + "]");
         throw new IllegalArgumentException(e);
       }
-    }
+//    }
 
-    return null;
+//    return null;
   }
 
-  /**
-   * Reset de context.
-   */
-  public void reset() {
-    contexts  = new ArrayList<Context>();
-    try {
-      contexts.add(new InitialContext());
-    } catch (NamingException e) {
-      LOGGER.error(CTX_ERROR, e);
-    }
-    locator   = new ServiceLocator();
-  }
+//  public void reset() {
+//    contexts  = new ArrayList<Context>();
+//    try {
+//      contexts.add(new InitialContext());
+//    } catch (NamingException e) {
+//      LOGGER.error(CTX_ERROR, e);
+//    }
+//    locator   = new ServiceLocator();
+//  }
 }

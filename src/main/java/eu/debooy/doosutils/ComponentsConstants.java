@@ -23,6 +23,9 @@ package eu.debooy.doosutils;
 public final class ComponentsConstants {
   private ComponentsConstants() {}
 
+  public static final String  DEF_TAAL  = "nl";
+  public static final String  UNDEFINED = "undefined";
+
   public static final String  DEFAULT_TAAL  = "default.taal";
   public static final String  WRONGREDIRECT = "errors.redirect.wrong";
 }
