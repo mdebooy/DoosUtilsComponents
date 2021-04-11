@@ -1,5 +1,5 @@
 /**
- * Copyright 2009 Marco de Booij
+ * Copyright (c) 2009 Marco de Booij
  *
  * Licensed under the EUPL, Version 1.1 or - as soon they will be approved by
  * the European Commission - subsequent versions of the EUPL (the "Licence");
@@ -37,18 +37,18 @@ public final class ServiceLocator {
   private static final  Logger  LOGGER  =
       LoggerFactory.getLogger(ServiceLocator.class);
 
-  private static final String     CTX_ERROR     = "Error in CTX lookup";
+  private static final String CTX_ERROR = "Error in CTX lookup";
 
   private static  Context         context;
 //  private static  List<Context>   contexts  = new ArrayList<Context>();
-  private static  ServiceLocator  locator   = new ServiceLocator();
+  private static  ServiceLocator  locator = new ServiceLocator();
 
   private ServiceLocator() {
     Properties  env = new Properties();
     env.put(Context.INITIAL_CONTEXT_FACTORY,
             "org.apache.openejb.client.RemoteInitialContextFactory");
-//    env.put(Context.PROVIDER_URL, "http://127.0.0.1:8080/tomee/ejb");
-    env.put(Context.PROVIDER_URL, "ejbd://localhost:4201/");
+    env.put(Context.PROVIDER_URL, "http://127.0.0.1:8080/tomee/ejb");
+//    env.put(Context.PROVIDER_URL, "ejbd://localhost:4201/");
     try {
       context = new InitialContext(env);
 //      contexts.add(context);
