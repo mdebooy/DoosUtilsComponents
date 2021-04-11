@@ -13,8 +13,8 @@
   <description>Components utility classes voor dOOS Web Applicaties.</description>
   <inceptionYear>2009</inceptionYear>
   <scm>
-    <developerConnection>scm:git:ssh://ptah.debooy.eu/srv/git/debooy/DoosUtilsComponents.git</developerConnection>
-    <connection>scm:git:ssh://ptah.debooy.eu/srv/git/debooy/DoosUtilsComponents.git</connection>
+    <developerConnection>scm:git:ssh://ptah.debooy.eu/srv/local/devops/git/debooy/DoosUtilsComponents.git</developerConnection>
+    <connection>scm:git:ssh://ptah.debooy.eu/srv/local/devops/git/debooy/DoosUtilsComponents.git</connection>
     <tag>HEAD</tag>
   </scm>
 
@@ -94,6 +94,10 @@
     <dependency>
       <groupId>org.apache.myfaces.core</groupId>
       <artifactId>myfaces-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.myfaces.tomahawk</groupId>
+      <artifactId>tomahawk20</artifactId>
     </dependency>
     <dependency>
       <groupId>org.glassfish.corba</groupId>
