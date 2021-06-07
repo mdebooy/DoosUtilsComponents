@@ -16,15 +16,12 @@
  */
 package eu.debooy.doosutils.components;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Arrays;
 
 
 /**
  * @author Marco de Booij
  */
-@JsonIgnoreProperties(value = { "params" })
 public class Message {
   public static final String  ERROR   = "error";
   public static final String  FATAL   = "fatal";
@@ -33,21 +30,20 @@ public class Message {
 
   private String    attribute;
   private String    message;
-  @Deprecated
-  @JsonIgnore
   private Object[]  params;
   private String    severity;
 
   private Message(Builder builder) {
     attribute = builder.getAttribute();
     message   = builder.getMessage();
+    params    = builder.getParams();
     severity  = builder.getSeverity();
-    params    = new Object[0];
   }
 
   public static final class Builder {
     private String    attribute;
     private String    message;
+    private Object[]  params    = new Object[0];
     private String    severity;
 
     public Builder() {}
@@ -64,6 +60,10 @@ public class Message {
       return message;
     }
 
+    public Object[] getParams() {
+      return Arrays.copyOf(params, params.length);
+    }
+
     public String getSeverity() {
       return severity;
     }
@@ -75,6 +75,11 @@ public class Message {
 
     public Builder setMessage(String message) {
       this.message    = message;
+      return this;
+    }
+
+    public Builder setParams(Object[] params) {
+      this.params     = Arrays.copyOf(params, params.length);
       return this;
     }
 
@@ -100,9 +105,8 @@ public class Message {
     return message;
   }
 
-  @Deprecated
   public Object[] getParams() {
-    return params.clone();
+    return Arrays.copyOf(params, params.length);
   }
 
   public String getSeverity() {
