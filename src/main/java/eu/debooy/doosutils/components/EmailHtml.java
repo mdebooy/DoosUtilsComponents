@@ -34,6 +34,7 @@ public class EmailHtml {
   public static final String  PUNTKOMMA     = ";";
   public static final String  STRING_END    = "\"";
   public static final String  STYLE_START   = " style=\"";
+  public static final String  TABLE_START   = "<table border=\"0\">";
 
   private String  hx  = "";
   private String  td  = "";
@@ -84,7 +85,7 @@ public class EmailHtml {
   }
 
   public String getTable() {
-    return "<table border=\"0\">";
+    return TABLE_START;
   }
 
   public String getTd(String tekst) {

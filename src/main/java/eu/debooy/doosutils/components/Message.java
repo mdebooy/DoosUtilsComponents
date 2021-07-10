@@ -29,20 +29,20 @@ public class Message {
   public static final String  WARNING = "warning";
 
   private String    attribute;
-  private String    message;
+  private String    msg;
   private Object[]  params;
   private String    severity;
 
   private Message(Builder builder) {
     attribute = builder.getAttribute();
-    message   = builder.getMessage();
+    msg       = builder.getMessage();
     params    = builder.getParams();
     severity  = builder.getSeverity();
   }
 
   public static final class Builder {
     private String    attribute;
-    private String    message;
+    private String    msg;
     private Object[]  params    = new Object[0];
     private String    severity;
 
@@ -57,7 +57,7 @@ public class Message {
     }
 
     public String getMessage() {
-      return message;
+      return msg;
     }
 
     public Object[] getParams() {
@@ -74,7 +74,7 @@ public class Message {
     }
 
     public Builder setMessage(String message) {
-      this.message    = message;
+      msg             = message;
       return this;
     }
 
@@ -94,7 +94,7 @@ public class Message {
     super();
     this.severity = severity;
     this.params   = params.clone();
-    this.message  = message;
+    msg           = message;
   }
 
   public String getAttribute() {
@@ -102,7 +102,7 @@ public class Message {
   }
 
   public String getMessage() {
-    return message;
+    return msg;
   }
 
   public Object[] getParams() {
@@ -115,7 +115,7 @@ public class Message {
 
   @Deprecated
   public void setMessage(String message) {
-    this.message  = message;
+    msg = message;
   }
 
   @Deprecated
@@ -130,7 +130,7 @@ public class Message {
 
   @Override
   public String toString() {
-    return "attribute="+ attribute + ", message=" + message
+    return "attribute=" + attribute + ", message=" + msg
            + ", params=" + Arrays.toString(params)
            + ", severity=" + severity;
   }

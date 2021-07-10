@@ -18,7 +18,6 @@ package eu.debooy.doosutils.components;
 
 import java.beans.FeatureDescriptor;
 import java.util.Iterator;
-
 import javax.el.ELContext;
 import javax.el.ELResolver;
 
@@ -31,6 +30,7 @@ public class EmptyToNullStringELResolver extends ELResolver {
     return String.class;
   }
 
+  @Override
   public Object convertToType(ELContext context, Object value,
                               Class<?> targetType) {
     if (value == null && targetType == String.class) {

@@ -41,11 +41,6 @@ public class Applicatieparameter implements Serializable {
     this.waarde     = waarde;
   }
 
-  @Deprecated
-  public Object clone() throws CloneNotSupportedException {
-    return (Applicatieparameter) super.clone();
-  }
-
   public String getParameter() {
     return parameter;
   }

@@ -66,7 +66,7 @@ public class ListFromCollection implements Serializable {
     private List                buffer;
 
     @SuppressWarnings("rawtypes")
-	  public ListImpl(Collection<?> collection, int size) {
+    public ListImpl(Collection<?> collection, int size) {
       this.collection = collection;
       cSize           = collection.size();
       if (size == 0) {
@@ -122,6 +122,7 @@ public class ListFromCollection implements Serializable {
   }
 
   private class MakeList extends AbstractMap<Collection<?>, List<?>> {
+    @Override
     public List<?> get(Object obj) {
       if (!(obj instanceof Collection)) {
         return null;
@@ -141,6 +142,7 @@ public class ListFromCollection implements Serializable {
                                              ListFromCollection.this.getSize());
     }
 
+    @Override
     public Set<Map.Entry<Collection<?>, List<?>>> entrySet() {
       return Collections.emptySet();
     }

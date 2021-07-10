@@ -18,7 +18,6 @@ package eu.debooy.doosutils.components.bean;
 
 import eu.debooy.doosutils.DoosUtils;
 import eu.debooy.jaas.UserPrincipal;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
@@ -27,11 +26,9 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
-
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +38,7 @@ import org.slf4j.LoggerFactory;
  * zien. Tevens bevat het de locale, de user-id en de volledige naam van de
  * gebruiker zodat niet steeds deze informatie uit de request informatie gehaald
  * moet worden.
- * 
+ *
  * @author Marco de Booij
  */
 @Named
@@ -59,7 +56,7 @@ public class Gebruiker implements Serializable {
   private static  String  versie;
   private static  String  bouwdatum;
 
-  private String  email     = null;      
+  private String  email     = null;
   private Locale  locale    = null;
   private String  userId    = null;
   private String  userName  = null;
@@ -74,13 +71,13 @@ public class Gebruiker implements Serializable {
 
   private static void buildDetails() {
     try {
-      URL       manifestUrl     = null;
-      Manifest  manifest        = null;
+      URL       manifestUrl;
+      Manifest  manifest;
       String    classContainer  = Gebruiker.class.getProtectionDomain()
                                            .getCodeSource()
                                            .getLocation().toString();
 
-      if (classContainer.indexOf(WEB_INF) >= 0) {
+      if (classContainer.contains(WEB_INF)) {
         classContainer  =
           classContainer.substring(0, classContainer.indexOf(WEB_INF));
         manifestUrl     =
@@ -120,7 +117,7 @@ public class Gebruiker implements Serializable {
       Principal principal = FacesContext.getCurrentInstance()
                                         .getExternalContext()
                                         .getUserPrincipal();
-      if (null != principal && principal instanceof UserPrincipal) {
+      if (principal instanceof UserPrincipal) {
         email  = DoosUtils.nullToEmpty(((UserPrincipal) principal).getEmail());
       }
     }
@@ -157,7 +154,7 @@ public class Gebruiker implements Serializable {
       Principal principal = FacesContext.getCurrentInstance()
                                         .getExternalContext()
                                         .getUserPrincipal();
-      if (null != principal && principal instanceof UserPrincipal) {
+      if (principal instanceof UserPrincipal) {
         userName  = DoosUtils
             .nullToValue(((UserPrincipal) principal).getVolledigeNaam(),
                          getUserId());

@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
@@ -30,9 +29,9 @@ import javax.faces.event.PhaseListener;
 
 /**
  * @author Marco de Booij
- * 
+ *
  * Voor het 'overzetten' van messages van de ene pagina op de andere:
- * 
+ *
  * Enables messages to be rendered on different pages from which they were set.
  *
  * After each phase where messages may be added, this moves the messages
@@ -55,12 +54,13 @@ import javax.faces.event.PhaseListener;
  */
 public class DoosPhaseListener implements PhaseListener {
   private static final  long    serialVersionUID  = 1L;
-  private static final  String  sessionToken      =
+  private static final  String  SESSIONTOKEN      =
       "MULTI_PAGE_MESSAGES_SUPPORT";
 
   /*
    * Save messages into the session after every phase.
    */
+  @Override
   public void afterPhase(PhaseEvent event) {
     if (!PhaseId.RENDER_RESPONSE.equals(event.getPhaseId())) {
       FacesContext  facesContext  = event.getFacesContext();
@@ -73,63 +73,60 @@ public class DoosPhaseListener implements PhaseListener {
    * have arrived here and the response is already complete, then the page is
    * not going to show up: don't display messages yet.
    */
+  @Override
   public void beforePhase(PhaseEvent event) {
     FacesContext facesContext = event.getFacesContext();
     this.saveMessages(facesContext);
 
-    if (PhaseId.RENDER_RESPONSE.equals(event.getPhaseId())) {
-      if (!facesContext.getResponseComplete()) {
-        this.restoreMessages(facesContext);
-      }
+    if (PhaseId.RENDER_RESPONSE.equals(event.getPhaseId())
+        && !facesContext.getResponseComplete()) {
+      this.restoreMessages(facesContext);
     }
   }
 
+  @Override
   public PhaseId getPhaseId() {
     return PhaseId.ANY_PHASE;
   }
 
-  @SuppressWarnings("unchecked")
   private int saveMessages(final FacesContext facesContext) {
-    List<FacesMessage>  messages  = new ArrayList<FacesMessage>();
+    List<FacesMessage>  messages  = new ArrayList<>();
     for (Iterator<FacesMessage> iter = facesContext.getMessages(null);
          iter.hasNext();) {
       messages.add(iter.next());
       iter.remove();
     }
 
-    if (messages.size() == 0) {
+    if (messages.isEmpty()) {
       return 0;
     }
 
     Map<String, Object> sessionMap = facesContext.getExternalContext()
                                                  .getSessionMap();
     List<FacesMessage> existingMessages =
-        (List<FacesMessage>) sessionMap.get(sessionToken);
+        (List<FacesMessage>) sessionMap.get(SESSIONTOKEN);
     if (existingMessages != null) {
       existingMessages.addAll(messages);
     } else {
-      sessionMap.put(sessionToken, messages);
+      sessionMap.put(SESSIONTOKEN, messages);
     }
 
     return messages.size();
   }
 
-  @SuppressWarnings("unchecked")
   private int restoreMessages(final FacesContext facesContext) {
     Map<String, Object> sessionMap = facesContext.getExternalContext()
                                                  .getSessionMap();
     List<FacesMessage> messages =
-        (List<FacesMessage>) sessionMap.remove(sessionToken);
+        (List<FacesMessage>) sessionMap.remove(SESSIONTOKEN);
 
     if (messages == null) {
       return 0;
     }
 
-    int restoredCount = messages.size();
-    for (Object element : messages) {
-      facesContext.addMessage(null, (FacesMessage) element);
-    }
+    messages.forEach(element ->
+        facesContext.addMessage(null, (FacesMessage) element));
 
-    return restoredCount;
+    return messages.size();
   }
 }

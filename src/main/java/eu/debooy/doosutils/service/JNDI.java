@@ -17,14 +17,12 @@
 package eu.debooy.doosutils.service;
 
 import eu.debooy.doosutils.DoosUtils;
-
 import javax.ejb.Singleton;
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,8 +39,8 @@ public final class JNDI {
   public static class JNDINaam {
     private StringBuilder jndi;
     private static final  String INTERFACE_SEPARATOR  = "!";
-    private static final  String PREFIX               = "java:global";
-    private static final  String SEPARATOR            = "/";
+    private static final  String PFIX                 = "java:global";
+    private static final  String SEP                  = "/";
 
     private String  appNaam;
     private String  beanNaam;
@@ -57,8 +55,8 @@ public final class JNDI {
                                                    .lookup("java:app/AppName");
       interfaceSeparator  = INTERFACE_SEPARATOR;
       jndi                = new StringBuilder();
-      prefix              = PREFIX;
-      separator           = SEPARATOR;
+      prefix              = PFIX;
+      separator           = SEP;
     }
 
     public <T> T locate(Class<T> clazz) {
