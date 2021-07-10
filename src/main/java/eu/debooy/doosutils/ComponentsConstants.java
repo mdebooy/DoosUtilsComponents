@@ -28,4 +28,6 @@ public final class ComponentsConstants {
 
   public static final String  DEFAULT_TAAL  = "default.taal";
   public static final String  WRONGREDIRECT = "errors.redirect.wrong";
+
+  public static final String  ERR_RUNTIME = "RT: %s";
 }
