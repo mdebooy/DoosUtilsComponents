@@ -46,8 +46,6 @@ public class Message {
     private Object[]  params    = new Object[0];
     private String    severity;
 
-    public Builder() {}
-
     public Message build() {
       return new Message(this);
     }

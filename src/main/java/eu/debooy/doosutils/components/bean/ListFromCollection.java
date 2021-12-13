@@ -32,6 +32,7 @@ import java.util.Set;
 /**
  * @author Marco de Booij
  */
+@Deprecated
 public class ListFromCollection implements Serializable {
   private static final  long  serialVersionUID  = 1L;
 

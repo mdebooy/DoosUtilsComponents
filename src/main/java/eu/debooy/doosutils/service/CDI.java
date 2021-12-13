@@ -18,7 +18,6 @@ package eu.debooy.doosutils.service;
 
 import java.lang.reflect.Type;
 import java.util.Set;
-
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.spi.Bean;
@@ -26,7 +25,6 @@ import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +36,7 @@ public final class CDI {
   private static final  Logger  LOGGER  =
       LoggerFactory.getLogger(CDI.class.getName());
 
-  private CDI() {};
+  private CDI() {}
 
   public static BeanManager getBeanManager() {
     BeanManager beanManager = null;
@@ -64,7 +62,7 @@ public final class CDI {
 
   @SuppressWarnings("unchecked")
   public static <T> T getBean(Class<T> type) {
-    BeanManager beanManager = getBeanManager();
+    var beanManager = getBeanManager();
     if (null == beanManager) {
       return null;
     }
@@ -73,13 +71,13 @@ public final class CDI {
         (Bean<T>) beanManager.resolve(beanManager.getBeans(type));
     CreationalContext<T>  creationalContext =
         beanManager.createCreationalContext(bean);
-    
+
     return (T) beanManager.getReference(bean, type, creationalContext);
   }
 
   @SuppressWarnings("unchecked")
   public static <T> T getBean(String naam) {
-    BeanManager beanManager = getBeanManager();
+    var beanManager = getBeanManager();
     if (null == beanManager) {
       return null;
     }
@@ -87,7 +85,7 @@ public final class CDI {
     Bean<T> bean  = (Bean<T>) beanManager.resolve(beanManager.getBeans(naam));
     CreationalContext<T>  creationalContext =
         beanManager.createCreationalContext(bean);
-    
+
     return (T) beanManager.getReference(bean, (Type) bean.getBeanClass(),
                                         creationalContext);
   }

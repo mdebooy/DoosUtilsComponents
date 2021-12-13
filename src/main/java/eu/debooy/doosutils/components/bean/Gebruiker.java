@@ -21,10 +21,8 @@ import eu.debooy.jaas.UserPrincipal;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
-import java.security.Principal;
 import java.util.Locale;
 import java.util.TimeZone;
-import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -73,7 +71,7 @@ public class Gebruiker implements Serializable {
     try {
       URL       manifestUrl;
       Manifest  manifest;
-      String    classContainer  = Gebruiker.class.getProtectionDomain()
+      var       classContainer  = Gebruiker.class.getProtectionDomain()
                                            .getCodeSource()
                                            .getLocation().toString();
 
@@ -95,7 +93,7 @@ public class Gebruiker implements Serializable {
       }
       manifest        = new Manifest(manifestUrl.openStream());
 
-      Attributes  attr  = manifest.getMainAttributes();
+      var attr  = manifest.getMainAttributes();
       versie    = attr.getValue("Implementation-Version");
       bouwdatum = attr.getValue("Build-Time");
     } catch (IOException e) {
@@ -114,9 +112,9 @@ public class Gebruiker implements Serializable {
 
   public String getEmail() {
     if (null == email) {
-      Principal principal = FacesContext.getCurrentInstance()
-                                        .getExternalContext()
-                                        .getUserPrincipal();
+      var principal = FacesContext.getCurrentInstance()
+                                  .getExternalContext()
+                                  .getUserPrincipal();
       if (principal instanceof UserPrincipal) {
         email  = DoosUtils.nullToEmpty(((UserPrincipal) principal).getEmail());
       }
@@ -151,9 +149,9 @@ public class Gebruiker implements Serializable {
 
   public String getUserName() {
     if (null == userName) {
-      Principal principal = FacesContext.getCurrentInstance()
-                                        .getExternalContext()
-                                        .getUserPrincipal();
+      var principal = FacesContext.getCurrentInstance()
+                                  .getExternalContext()
+                                  .getUserPrincipal();
       if (principal instanceof UserPrincipal) {
         userName  = DoosUtils
             .nullToValue(((UserPrincipal) principal).getVolledigeNaam(),

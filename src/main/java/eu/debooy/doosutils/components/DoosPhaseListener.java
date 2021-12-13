@@ -19,7 +19,6 @@ package eu.debooy.doosutils.components;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
@@ -57,25 +56,17 @@ public class DoosPhaseListener implements PhaseListener {
   private static final  String  SESSIONTOKEN      =
       "MULTI_PAGE_MESSAGES_SUPPORT";
 
-  /*
-   * Save messages into the session after every phase.
-   */
   @Override
   public void afterPhase(PhaseEvent event) {
     if (!PhaseId.RENDER_RESPONSE.equals(event.getPhaseId())) {
-      FacesContext  facesContext  = event.getFacesContext();
+      var facesContext  = event.getFacesContext();
       this.saveMessages(facesContext);
     }
   }
 
-  /*
-   * Check to see if we are "naturally" in the RENDER_RESPONSE phase. If we
-   * have arrived here and the response is already complete, then the page is
-   * not going to show up: don't display messages yet.
-   */
   @Override
   public void beforePhase(PhaseEvent event) {
-    FacesContext facesContext = event.getFacesContext();
+    var facesContext = event.getFacesContext();
     this.saveMessages(facesContext);
 
     if (PhaseId.RENDER_RESPONSE.equals(event.getPhaseId())
@@ -101,9 +92,8 @@ public class DoosPhaseListener implements PhaseListener {
       return 0;
     }
 
-    Map<String, Object> sessionMap = facesContext.getExternalContext()
-                                                 .getSessionMap();
-    List<FacesMessage> existingMessages =
+    var sessionMap        = facesContext.getExternalContext().getSessionMap();
+    var existingMessages  =
         (List<FacesMessage>) sessionMap.get(SESSIONTOKEN);
     if (existingMessages != null) {
       existingMessages.addAll(messages);
@@ -115,10 +105,8 @@ public class DoosPhaseListener implements PhaseListener {
   }
 
   private int restoreMessages(final FacesContext facesContext) {
-    Map<String, Object> sessionMap = facesContext.getExternalContext()
-                                                 .getSessionMap();
-    List<FacesMessage> messages =
-        (List<FacesMessage>) sessionMap.remove(SESSIONTOKEN);
+    var sessionMap  = facesContext.getExternalContext().getSessionMap();
+    var messages    = (List<FacesMessage>) sessionMap.remove(SESSIONTOKEN);
 
     if (messages == null) {
       return 0;

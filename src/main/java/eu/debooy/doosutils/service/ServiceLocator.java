@@ -21,8 +21,6 @@ import eu.debooy.doosutils.errorhandling.exception.base.DoosLayer;
 import java.util.Properties;
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.naming.NameClassPair;
-import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 import javax.rmi.PortableRemoteObject;
 import javax.sql.DataSource;
@@ -44,7 +42,7 @@ public final class ServiceLocator {
   private Context context;
 
   private ServiceLocator() {
-    Properties  env = new Properties();
+    var env = new Properties();
     env.put(Context.INITIAL_CONTEXT_FACTORY,
             "org.apache.openejb.client.RemoteInitialContextFactory");
     env.put(Context.PROVIDER_URL, "http://127.0.0.1:8080/tomee/ejb");
@@ -60,11 +58,9 @@ public final class ServiceLocator {
       throw new IllegalArgumentException(
           "getDataSource: JNDI mag niet null zijn.");
     }
-    LOGGER.debug("getDataSource: Zoek JNDI " + jndi);
-    DataSource datasource = (DataSource) lookup(jndi);
+    LOGGER.debug("getDataSource: Zoek JNDI {0}", jndi);
+    var datasource  = (DataSource) lookup(jndi);
     if (datasource == null) {
-      LOGGER.error("getDataSource: Kan geen datasource vinden met JNDI="
-                   + jndi + " in geen enkele context.");
       throw new ServiceLocatorException(DoosError.OBJECT_NOT_FOUND,
                   DoosLayer.BUSINESS, "Kan geen datasource vinden met JNDI="
                   + jndi + " in geen enkele context.");
@@ -80,40 +76,39 @@ public final class ServiceLocator {
 
   private void listContext(String string, Context context)
       throws NamingException {
-    NamingEnumeration<NameClassPair>  pairs = context.list("");
+    var pairs = context.list("");
     while (pairs.hasMoreElements()) {
-      NameClassPair pair  = pairs.next();
+      var pair  = pairs.next();
       LOGGER.debug(string + "/" + pair.getName() + " " + pair.getClassName());
-      Object obj  = context.lookup(pair.getName());
+      var obj  = context.lookup(pair.getName());
       if (obj instanceof Context) {
-        Context child = (Context) obj;
+        var child = (Context) obj;
         listContext(string + "/" + pair.getName(), child);
       }
     }
   }
 
   public <T> T lookup(Class<T> clazz, String jndiName) {
-    Object  bean  = lookup(jndiName);
+    var bean  = lookup(jndiName);
 
     // TODO Zoek een betere oplossing. Bestaat niet meer in Java 11.
     return clazz.cast(PortableRemoteObject.narrow(bean, clazz));
   }
 
   public Object lookup(String jndi) {
-    LOGGER.debug("Zoek JNDI: " + jndi);
+    LOGGER.debug("Zoek JNDI: {0}", jndi);
     if (LOGGER.isDebugEnabled()) {
       try {
         listContext("", context);
       } catch (NamingException e) {
-        LOGGER.error("JNDI: " + jndi + " [" + e.getMessage() + "]");
+        LOGGER.error("JNDI: {0} [{1}]", jndi, e.getMessage());
       }
     }
     try {
-      Object object = context.lookup(jndi);
-      LOGGER.debug("Object: " + object.getClass().getCanonicalName());
+      var object  = context.lookup(jndi);
+      LOGGER.debug("Object: {0}", object.getClass().getCanonicalName());
       return object;
     } catch (NamingException e) {
-      LOGGER.error("JNDI: " + jndi + " [" + e.getMessage() + "]");
       throw new IllegalArgumentException(e);
     }
   }

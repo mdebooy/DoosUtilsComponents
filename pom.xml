@@ -3,7 +3,7 @@
   <parent>
     <groupId>eu.debooy.maven</groupId>
     <artifactId>tomee</artifactId>
-    <version>8.0.7</version>
+    <version>8.0.9-SNAPSHOT</version>
   </parent>
   <groupId>eu.debooy.doosutils</groupId>
   <artifactId>doosutils-components</artifactId>
@@ -51,18 +51,18 @@
     <dependency>
       <groupId>eu.debooy.doosutils</groupId>
       <artifactId>doosutils-persistence</artifactId>
-      <version>2.2.3</version>
+      <version>2.2.4-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>eu.debooy.doosutils</groupId>
       <artifactId>doosutils-test</artifactId>
-      <version>2.0.0</version>
+      <version>2.0.2-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>eu.debooy.doosutils</groupId>
       <artifactId>doosutils-util</artifactId>
-      <version>2.1.0</version>
+      <version>2.1.2-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>eu.debooy.doosutils</groupId>

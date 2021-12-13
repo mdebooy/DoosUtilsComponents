@@ -34,21 +34,21 @@ public final class JNDI {
   private static final  Logger  LOGGER  =
       LoggerFactory.getLogger(JNDI.class);
 
-  private JNDI() {};
+  private JNDI() {}
 
   public static class JNDINaam {
-    private StringBuilder jndi;
     private static final  String INTERFACE_SEPARATOR  = "!";
     private static final  String PFIX                 = "java:global";
     private static final  String SEP                  = "/";
 
-    private String  appNaam;
-    private String  beanNaam;
-    private String  interfaceNaam;
-    private String  interfaceSeparator;
-    private String  moduleNaam;
-    private String  separator;
-    private String  prefix;
+    private       String        appNaam;
+    private       String        beanNaam;
+    private       String        interfaceNaam;
+    private       String        interfaceSeparator;
+    private final StringBuilder jndi;
+    private       String        moduleNaam;
+    private       String        separator;
+    private       String        prefix;
 
     public JNDINaam() {
       appNaam             = (String) ServiceLocator.getInstance()
@@ -67,7 +67,6 @@ public final class JNDI {
       return ServiceLocator.getInstance().lookup(asString());
     }
 
-    @SuppressWarnings("unchecked")
     public <T> T getContextualInstance(final BeanManager manager,
                                               final Class<T> type) {
       T       result  = null;
@@ -132,21 +131,19 @@ public final class JNDI {
     }
 
     String computeBeanNaam(Class<?> beanClass) {
-      Stateless stateless =
-          (Stateless) beanClass.getAnnotation(Stateless.class);
+      var stateless = beanClass.getAnnotation(Stateless.class);
       if (null != stateless
           && DoosUtils.isNotBlankOrNull(stateless.name())) {
         return stateless.name();
       }
 
-      Stateful   stateful = (Stateful) beanClass.getAnnotation(Stateful.class);
+      var stateful  = beanClass.getAnnotation(Stateful.class);
       if (null != stateful
           && DoosUtils.isNotBlankOrNull(stateful.name())) {
         return stateful.name();
       }
 
-      Singleton singleton =
-          (Singleton) beanClass.getAnnotation(Singleton.class);
+      var singleton = beanClass.getAnnotation(Singleton.class);
       if (null != singleton
           && DoosUtils.isNotBlankOrNull(singleton.name())) {
         return singleton.name();
@@ -169,7 +166,7 @@ public final class JNDI {
       if (DoosUtils.isNotBlankOrNull(interfaceNaam)) {
         jndi.append(interfaceSeparator).append(interfaceNaam);
       }
-      LOGGER.debug("JNDI: " + jndi.toString());
+      LOGGER.debug("JNDI: {0}", jndi.toString());
 
       return jndi.toString();
     }

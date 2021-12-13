@@ -16,10 +16,9 @@
  */
 package eu.debooy.doosutils.components;
 
-import java.net.URL;
-
 import com.sun.facelets.impl.DefaultResourceResolver;
 import com.sun.facelets.impl.ResourceResolver;
+import java.net.URL;
 
 
 /**
@@ -28,8 +27,9 @@ import com.sun.facelets.impl.ResourceResolver;
 public class CustomResourceResolver extends DefaultResourceResolver
     implements ResourceResolver {
 
+  @Override
   public URL resolveUrl(String path) {
-    URL resourceUrl = super.resolveUrl(path);
+    var resourceUrl = super.resolveUrl(path);
 
     if (resourceUrl == null) {
       if (path.startsWith("/")) {
