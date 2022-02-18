@@ -6,7 +6,7 @@
                   xmlns:t="http://myfaces.apache.org/tomahawk">
     <div class="input-group input-group-sm">
       <t:inputText id="#{id}" styleClass="form-control form-control-sm" value="#{value}" readonly="#{readonly}">
-        <f:convertDateTime type="text" pattern="dd/MM/yyyy" timeZone="#{gebruiker.timeZone}" />
+        <f:convertDateTime type="date" pattern="dd/MM/yyyy" timeZone="#{gebruiker.timeZone}" />
       </t:inputText>
       <div class="input-group-append"><span class="input-group-text"><span class="fas fa-calendar-alt"></span></span></div>
     </div>
