@@ -173,4 +173,21 @@ public class Gebruiker implements Serializable {
   public void setUserName(String userName) {
     this.userName = userName;
   }
+
+  @Override
+  public String toString() {
+    var sb  = new StringBuilder();
+
+    sb.append("Gebruiker (")
+      .append("userID=").append(getUserId())
+      .append(", userName=").append(getUserName())
+      .append(", email=").append(getEmail())
+      .append(", locale=").append(getLocale())
+      .append(", timeZone=").append(getTimeZone())
+      .append(", bouwdatum=").append(getBouwdatum())
+      .append(", versie=").append(getVersie())
+      .append(")");
+
+    return sb.toString();
+  }
 }
