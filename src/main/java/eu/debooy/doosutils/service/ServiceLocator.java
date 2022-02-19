@@ -58,7 +58,7 @@ public final class ServiceLocator {
       throw new IllegalArgumentException(
           "getDataSource: JNDI mag niet null zijn.");
     }
-    LOGGER.debug("getDataSource: Zoek JNDI {0}", jndi);
+    LOGGER.debug("getDataSource: Zoek JNDI {}", jndi);
     var datasource  = (DataSource) lookup(jndi);
     if (datasource == null) {
       throw new ServiceLocatorException(DoosError.OBJECT_NOT_FOUND,
@@ -79,7 +79,7 @@ public final class ServiceLocator {
     var pairs = context.list("");
     while (pairs.hasMoreElements()) {
       var pair  = pairs.next();
-      LOGGER.debug(string + "/" + pair.getName() + " " + pair.getClassName());
+      LOGGER.debug("{}/{} {}", string, pair.getName(), pair.getClassName());
       var obj  = context.lookup(pair.getName());
       if (obj instanceof Context) {
         var child = (Context) obj;
@@ -96,17 +96,17 @@ public final class ServiceLocator {
   }
 
   public Object lookup(String jndi) {
-    LOGGER.debug("Zoek JNDI: {0}", jndi);
+    LOGGER.debug("Zoek JNDI: {}", jndi);
     if (LOGGER.isDebugEnabled()) {
       try {
         listContext("", context);
       } catch (NamingException e) {
-        LOGGER.error("JNDI: {0} [{1}]", jndi, e.getMessage());
+        LOGGER.error("JNDI: {} [{}]", jndi, e.getMessage());
       }
     }
     try {
       var object  = context.lookup(jndi);
-      LOGGER.debug("Object: {0}", object.getClass().getCanonicalName());
+      LOGGER.debug("Object: {}", object.getClass().getCanonicalName());
       return object;
     } catch (NamingException e) {
       throw new IllegalArgumentException(e);

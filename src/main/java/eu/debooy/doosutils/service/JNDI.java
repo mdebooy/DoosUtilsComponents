@@ -166,7 +166,7 @@ public final class JNDI {
       if (DoosUtils.isNotBlankOrNull(interfaceNaam)) {
         jndi.append(interfaceSeparator).append(interfaceNaam);
       }
-      LOGGER.debug("JNDI: {0}", jndi.toString());
+      LOGGER.debug("JNDI: {}", jndi.toString());
 
       return jndi.toString();
     }

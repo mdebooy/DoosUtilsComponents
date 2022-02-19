@@ -113,7 +113,7 @@ public class DoosPhaseListener implements PhaseListener {
     }
 
     messages.forEach(element ->
-        facesContext.addMessage(null, (FacesMessage) element));
+        facesContext.addMessage(null, element));
 
     return messages.size();
   }

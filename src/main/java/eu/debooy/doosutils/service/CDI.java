@@ -42,25 +42,21 @@ public final class CDI {
     BeanManager beanManager = null;
 
     try {
-      final InitialContext initialContext = new InitialContext();
+      final var initialContext = new InitialContext();
       beanManager =
           (BeanManager) initialContext.lookup("java:comp/BeanManager");
     } catch(NamingException e) {
-      LOGGER.error("BeanManager niet gevonden.", e);
+      LOGGER.error("BeanManager niet gevonden.", e.getLocalizedMessage());
     }
 
     return beanManager;
   }
 
   public static Set<Bean<?>> getBeans() {
-    @SuppressWarnings("serial")
-    Set<Bean<?>>  beans =
-      getBeanManager().getBeans(Object.class, new AnnotationLiteral<Any>() {});
-
-    return beans;
+    return getBeanManager().getBeans(Object.class,
+                                     new AnnotationLiteral<Any>() {});
   }
 
-  @SuppressWarnings("unchecked")
   public static <T> T getBean(Class<T> type) {
     var beanManager = getBeanManager();
     if (null == beanManager) {
@@ -75,7 +71,6 @@ public final class CDI {
     return (T) beanManager.getReference(bean, type, creationalContext);
   }
 
-  @SuppressWarnings("unchecked")
   public static <T> T getBean(String naam) {
     var beanManager = getBeanManager();
     if (null == beanManager) {

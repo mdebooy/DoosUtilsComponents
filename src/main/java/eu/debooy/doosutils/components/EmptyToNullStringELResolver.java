@@ -26,6 +26,7 @@ import javax.el.ELResolver;
  * @author Marco de Booij
  */
 public class EmptyToNullStringELResolver extends ELResolver {
+  @Override
   public Class<?> getCommonPropertyType(ELContext context, Object base) {
     return String.class;
   }
@@ -40,24 +41,30 @@ public class EmptyToNullStringELResolver extends ELResolver {
     return value;
   }
 
+  @Override
   public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context,
                                                            Object base) {
     return null;
   }
 
+  @Override
   public Class<?> getType(ELContext context, Object base, Object property) {
     return null;
   }
 
+  @Override
   public Object getValue(ELContext context, Object base, Object property) {
     return null;
   }
 
+  @Override
   public boolean isReadOnly(ELContext context, Object base, Object property) {
     return true;
   }
 
+  @Override
   public void setValue(ELContext context, Object base, Object property,
                        Object value) {
+    // Geen implementatie nodig.
   }
 }
