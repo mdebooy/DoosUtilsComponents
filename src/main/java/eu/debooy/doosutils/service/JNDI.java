@@ -59,6 +59,15 @@ public final class JNDI {
       separator           = SEP;
     }
 
+    /**
+     * Method alleen maakt gebruik van deprecated method.
+     * 
+     * @param <T>
+     * @param clazz
+     * @return
+     * @deprecated
+     */
+    @Deprecated (since = "2.2.5", forRemoval = false)
     public <T> T locate(Class<T> clazz) {
       return ServiceLocator.getInstance().lookup(clazz, asString());
     }
