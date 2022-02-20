@@ -110,7 +110,7 @@ public class Message {
     sb.append("Message (")
       .append("attribute=").append(getAttribute())
       .append(", message=").append(getMessage())
-      .append(", params=").append(getParams())
+      .append(", params=").append(Arrays.toString(params))
       .append(", severity=").append(getSeverity())
       .append(")");
 

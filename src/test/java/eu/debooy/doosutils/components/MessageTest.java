@@ -16,15 +16,15 @@
  */
 package eu.debooy.doosutils.components;
 
-import org.hamcrest.core.IsEqual;
-import org.hamcrest.core.IsNot;
-import org.junit.Assert;
+import java.util.Arrays;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
 
 /**
- *
  * @author Marco de Booij
  */
 public class MessageTest {
@@ -35,40 +35,59 @@ public class MessageTest {
 
   @Test
   public void testBuildAttribute() {
-    Message message = new Message.Builder()
-                                 .setAttribute(ATTR).build();
+    var message = new Message.Builder().setAttribute(ATTR).build();
 
     assertEquals(ATTR, message.getAttribute());
+    assertNull(message.getMessage());
+    assertEquals(0, message.getParams().length);
+    assertNull(message.getSeverity());
   }
 
   @Test
   public void testBuildMessage() {
-    Message message = new Message.Builder()
-                                 .setMessage(MESS).build();
+    var message = new Message.Builder().setMessage(MESS).build();
 
+    assertNull(message.getAttribute());
     assertEquals(MESS, message.getMessage());
+    assertEquals(0, message.getParams().length);
+    assertNull(message.getSeverity());
   }
 
   @Test
   public void testBuildParams() {
-    Object[]  params  = new Object[]{PAR1, PAR2};
-    Message   message = new Message.Builder()
-                                   .setParams(params).build();
+    var params  = new Object[]{PAR1, PAR2};
+    var message = new Message.Builder().setParams(params).build();
 
-    Assert.assertArrayEquals(params, message.getParams());
+    assertNull(message.getAttribute());
+    assertNull(message.getMessage());
+    assertArrayEquals(params, message.getParams());
+    assertNull(message.getSeverity());
 
     params[0] = PAR1.toUpperCase();
-    Assert.assertThat(params, IsNot.not(IsEqual.equalTo(message.getParams())));
-
-    Object[]  paramsc = message.getParams();
-    Assert.assertArrayEquals(paramsc, message.getParams());
+    assertNotEquals(Arrays.asList(params), Arrays.asList(message.getParams()));
   }
 
   @Test
   public void testBuildSeverity() {
-    Message message = new Message.Builder()
-                                 .setSeverity(Message.INFO).build();
+    var message = new Message.Builder().setSeverity(Message.INFO).build();
 
+    assertNull(message.getAttribute());
+    assertNull(message.getMessage());
+    assertEquals(0, message.getParams().length);
     assertEquals(Message.INFO, message.getSeverity());
+  }
+
+  @Test
+  public void testToString() {
+    var params  = new Object[]{PAR1, PAR2};
+    var message = new Message.Builder()
+                             .setAttribute(ATTR)
+                             .setMessage(MESS)
+                             .setParams(params)
+                             .setSeverity(Message.INFO).build();
+
+    assertEquals("Message (attribute=attr, message=mess, params=[param1, "
+                  + "param2], severity=info)",
+                 message.toString());
   }
 }
