@@ -29,12 +29,12 @@ public class Applicatieparameter implements Serializable {
   private String  sleutel;
   private String  waarde;
 
-
   public Applicatieparameter(Applicatieparameter applicatieparameter) {
     parameter = applicatieparameter.parameter;
     sleutel   = applicatieparameter.sleutel;
     waarde    = applicatieparameter.waarde;
   }
+
   public Applicatieparameter(String parameter, String sleutel, String waarde) {
     this.parameter  = parameter;
     this.sleutel    = sleutel;
@@ -53,20 +53,16 @@ public class Applicatieparameter implements Serializable {
     return waarde;
   }
 
-  public void setParameter(String parameter) {
-    this.parameter = parameter;
-  }
-
-  public void setSleutel(String sleutel) {
-    this.sleutel = sleutel;
-  }
-
   public void setWaarde(String waarde) {
     this.waarde = waarde;
   }
 
+  @Override
   public String toString() {
-    return "parameter=" + parameter + ", sleutel=" + sleutel
-           + ", waarde=" + waarde;
+    return  new StringBuilder().append("Applicatieparameter (")
+                               .append("parameter=").append(getParameter())
+                               .append(", sleutel=").append(getSleutel())
+                               .append(", waarde=").append(getWaarde())
+                               .append(")").toString();
   }
 }
