@@ -17,6 +17,7 @@
 package eu.debooy.doosutils.service;
 
 import java.lang.reflect.Type;
+import java.util.HashSet;
 import java.util.Set;
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.Any;
@@ -46,15 +47,20 @@ public final class CDI {
       beanManager =
           (BeanManager) initialContext.lookup("java:comp/BeanManager");
     } catch(NamingException e) {
-      LOGGER.error("BeanManager niet gevonden.", e.getLocalizedMessage());
+      LOGGER.error("BeanManager niet gevonden ({}).", e.getLocalizedMessage());
     }
 
     return beanManager;
   }
 
   public static Set<Bean<?>> getBeans() {
-    return getBeanManager().getBeans(Object.class,
-                                     new AnnotationLiteral<Any>() {});
+    var beanManager = getBeanManager();
+
+    if (null == beanManager) {
+      return new HashSet<>();
+    }
+
+    return beanManager.getBeans(Object.class, new AnnotationLiteral<Any>() {});
   }
 
   public static <T> T getBean(Class<T> type) {
