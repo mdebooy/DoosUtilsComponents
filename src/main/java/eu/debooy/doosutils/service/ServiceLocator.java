@@ -16,8 +16,6 @@
  */
 package eu.debooy.doosutils.service;
 
-import eu.debooy.doosutils.errorhandling.exception.base.DoosError;
-import eu.debooy.doosutils.errorhandling.exception.base.DoosLayer;
 import java.util.Properties;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -59,15 +57,8 @@ public final class ServiceLocator {
           "getDataSource: JNDI mag niet null zijn.");
     }
     LOGGER.debug("getDataSource: Zoek JNDI {}", jndi);
-    var datasource  = (DataSource) lookup(jndi);
-    if (datasource == null) {
-      throw new ServiceLocatorException(DoosError.OBJECT_NOT_FOUND,
-                  DoosLayer.BUSINESS, "Kan geen datasource vinden met JNDI="
-                  + jndi + " in geen enkele context.");
-    }
-    LOGGER.debug("getDataSource: Gevonden.");
 
-    return datasource;
+    return (DataSource) lookup(jndi);
   }
 
   public static ServiceLocator getInstance() {
@@ -88,22 +79,34 @@ public final class ServiceLocator {
     }
   }
 
+  /**
+   * Deze in method gebruikte method werkt niet meer in Java 11.
+   * Dit als gevolg van "JEP 320: Remove the Java EE and CORBA Modules".
+   *
+   * @param <T>
+   * @param clazz
+   * @param jndiName
+   * @return
+   * @deprecated
+   */
+  @Deprecated(since = "2.2.5", forRemoval = false)
   public <T> T lookup(Class<T> clazz, String jndiName) {
     var bean  = lookup(jndiName);
 
-    // TODO Zoek een betere oplossing. Bestaat niet meer in Java 11.
     return clazz.cast(PortableRemoteObject.narrow(bean, clazz));
   }
 
   public Object lookup(String jndi) {
     LOGGER.debug("Zoek JNDI: {}", jndi);
+
     if (LOGGER.isDebugEnabled()) {
       try {
         listContext("", context);
       } catch (NamingException e) {
-        LOGGER.error("JNDI: {} [{}]", jndi, e.getMessage());
+        LOGGER.error("JNDI: {} [{}]", jndi, e.getLocalizedMessage());
       }
     }
+
     try {
       var object  = context.lookup(jndi);
       LOGGER.debug("Object: {}", object.getClass().getCanonicalName());
