@@ -28,10 +28,10 @@ public class Message {
   public static final String  INFO    = "info";
   public static final String  WARNING = "warning";
 
-  private String    attribute;
-  private String    msg;
-  private Object[]  params;
-  private String    severity;
+  private final String    attribute;
+  private final String    msg;
+  private final Object[]  params;
+  private final String    severity;
 
   private Message(Builder builder) {
     attribute = builder.getAttribute();
@@ -87,14 +87,6 @@ public class Message {
     }
   }
 
-  @Deprecated
-  public Message(String severity, String message, Object... params) {
-    super();
-    this.severity = severity;
-    this.params   = params.clone();
-    msg           = message;
-  }
-
   public String getAttribute() {
     return attribute;
   }
@@ -111,25 +103,17 @@ public class Message {
     return severity;
   }
 
-  @Deprecated
-  public void setMessage(String message) {
-    msg = message;
-  }
-
-  @Deprecated
-  public void setParams(Object... params) {
-    this.params = params.clone();
-  }
-
-  @Deprecated
-  public void setSeverity(String severity) {
-    this.severity = severity;
-  }
-
   @Override
   public String toString() {
-    return "attribute=" + attribute + ", message=" + msg
-           + ", params=" + Arrays.toString(params)
-           + ", severity=" + severity;
+    var sb  = new StringBuilder();
+
+    sb.append("Message (")
+      .append("attribute=").append(getAttribute())
+      .append(", message=").append(getMessage())
+      .append(", params=").append(getParams())
+      .append(", severity=").append(getSeverity())
+      .append(")");
+
+    return sb.toString();
   }
 }
