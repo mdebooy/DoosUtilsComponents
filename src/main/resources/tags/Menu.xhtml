@@ -6,44 +6,45 @@
    xmlns:ui="http://java.sun.com/jsf/facelets">
   <ui:composition>
     <c:set var="dropdown" scope="session" value="false"/>
-      <div class="menu col-12">
-        <nav class="navbar navbar-expand navbar-light">
-          <div class="container">
-            <div class="navbar-collapse">
-              <ul class="navbar-nav mr-auto">
+      <div id="menu">
+        <div class="container">
+          <nav class="navbar" role="navigation" aria-label="hoofdmenu">
     <c:choose>
       <c:when test="${empty logo}">
-                <li class="nav-item"><a class="navbar-brand" href="#{path}/index.xhtml">#{applicatienaam}</a></li>
+            <div id="#{applicatienaam}" class="navbar-item"><a class="nav-link" href="#{path}/index.xhtml">#{applicatienaam}</a></div>
       </c:when>
       <c:otherwise>
-                <li class="nav-item"><a class="nav-link" href="#{path}/index.xhtml"><img src="#{logo}" alt="#{applicatienaam}" title="#{applicatienaam}" /></a></li>
+            <div id="#{applicatienaam}" class="navbar-brand"><a class="nav-link" href="#{path}/index.xhtml"><img src="#{logo}" alt="#{applicatienaam}" title="#{applicatienaam}" /></a></div>
       </c:otherwise>
     </c:choose>
+            <div id="hoofdmenu" class="navbar-menu">
+              <div class="navbar-start">
     <c:forEach var="item" items="${bean.menu}">
       <c:set var="key" scope="session" value="${fn:substringAfter(item.key, path)}" />
       <c:choose>
         <c:when test="${fn:startsWith(key, 'Dropdown.')}">
           <c:set var="dropdownnaam" scope ="session" value="${fn:substringAfter(key, 'Dropdown.')}" />
-                <li class="nav-item dropdown"><a id="${dropdownnaam}" href="#" role="button" class="nav-link dropdown-toggle" data-toggle="dropdown">#{i18nTeksten.tekst(item.value)}<b class="caret"></b></a>
-                  <div class="dropdown-menu dropdown-menu-center" aria-labelledby="${dropdownnaam}">
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a id="${dropdownnaam}" class="navbar-link" href="#">#{i18nTeksten.tekst(item.value)}</a>
+                  <div class="navbar-dropdown">
           <c:forEach var="dditem" items="${bean.getDropdownmenu(dropdownnaam)}">
-                    <a class="dropdown-item" href="#{dditem.key}">#{i18nTeksten.tekst(dditem.value)}</a>
+                    <a class="navbar-item" href="#{dditem.key}">#{i18nTeksten.tekst(dditem.value)}</a>
           </c:forEach>
                   </div>
-                </li>
+                </div>
         </c:when>
         <c:otherwise>
-                <li class="nav-item"><a class="nav-link" href="#{item.key}">#{i18nTeksten.tekst(item.value)}</a></li>
+            <div id="#{item.key}" class="navbar-item"><a class="nav-link" href="#{item.key}">#{i18nTeksten.tekst(item.value)}</a></div>
         </c:otherwise>
       </c:choose>
     </c:forEach>
-              </ul>
-              <ul class="navbar-nav">
-                <li class="nav-item">#{gebruiker.userName} <img alt="#{gebruiker.locale.language}" align="right" hspace="10px" src="/common/images/taal/#{gebruiker.locale.language}.png" title="#{gebruiker.locale.language}" height="9" /></li>
-              </ul>
+              </div>
             </div>
-          </div>
-        </nav>
+            <div id="gebruikerinfo" class="navbar-end">
+              <div id="gebruiker" class="navbar-item">#{gebruiker.userName} <img alt="#{gebruiker.locale.language}" align="right" hspace="10px" src="/common/images/taal/#{gebruiker.locale.language}.png" title="#{gebruiker.locale.language}" height="9" /></div>
+            </div>
+          </nav>
+        </div>
       </div>
   </ui:composition>
 </html>
