@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html  lang="#{gebruiker.locale.language}"
+      xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+   xmlns:ui="http://java.sun.com/jsf/facelets">
+  <ui:composition>
+    <c:if test="#{taal == '??'}">
+      <ui:param name="taal" value="unk" />
+    </c:if>
+    <img alt="${taal}" align="right" height="9" hspace="10px" src="/common/images/taal/${taal}.png" title="${taal}" />
+  </ui:composition>
+</html>
