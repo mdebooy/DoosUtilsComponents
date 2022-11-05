@@ -53,4 +53,8 @@
     <tag-name>taalvlag</tag-name>
     <source>/tags/Taalvlag.xhtml</source>
   </tag>
+  <tag>
+    <tag-name>titel</tag-name>
+    <source>/tags/Titel.xhtml</source>
+  </tag>
 </facelet-taglib>
