@@ -1,21 +1,82 @@
-<!DOCTYPE facelet-taglib PUBLIC
-  "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN"
-  "http://java.sun.com/dtd/facelet-taglib_1_0.dtd">
-
-<facelet-taglib>
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (c) 2013 Marco de Booij
+ *
+ * Licensed under the EUPL, Version 1.1 or - as soon they will be approved by
+ * the European Commission - subsequent versions of the EUPL (the "Licence");
+ * you may not use this work except in compliance with the Licence. You may
+ * obtain a copy of the Licence at:
+ *
+ * https://joinup.ec.europa.eu/software/page/eupl
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the Licence is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Licence for the specific language governing permissions and
+ * limitations under the Licence.
+-->
+<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
+              version="2.0">
   <namespace>http://java.debooy.eu/jsf/facelets</namespace>
 
   <tag>
     <tag-name>cancel</tag-name>
     <source>/tags/CancelOrBack.xhtml</source>
+    <attribute>
+      <name>aktie</name>
+      <type>java.lang.Object</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>returnto</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
   </tag>
   <tag>
     <tag-name>confirmatie</tag-name>
     <source>/tags/Confirmatie.xhtml</source>
+    <attribute>
+      <name>buttontekst</name>
+      <type>java.lang.String</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>titel</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
   </tag>
   <tag>
     <tag-name>crudbuttonbar</tag-name>
     <source>/tags/CrudButtonBar.xhtml</source>
+    <attribute>
+      <name>bean</name>
+      <type>java.lang.Object</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>form</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>key</name>
+      <type>java.lang.Object</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>returnto</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>tekst</name>
+      <type>java.lang.String</type>
+      <required>false</required>
+    </attribute>
   </tag>
   <tag>
     <tag-name>datum</tag-name>
@@ -40,6 +101,26 @@
   <tag>
     <tag-name>menu</tag-name>
     <source>/tags/Menu.xhtml</source>
+    <attribute>
+      <name>applicatienaam</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>bean</name>
+      <type>java.lang.Object</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>logo</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>path</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
   </tag>
   <tag>
     <tag-name>messages</tag-name>
@@ -48,13 +129,48 @@
   <tag>
     <tag-name>spacer</tag-name>
     <source>/tags/Spacer.xhtml</source>
+    <attribute>
+      <name>aantal</name>
+      <type>java.lang.Integer</type>
+      <required>false</required>
+    </attribute>
   </tag>
   <tag>
     <tag-name>taalvlag</tag-name>
     <source>/tags/Taalvlag.xhtml</source>
+    <attribute>
+      <name>taal</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
   </tag>
   <tag>
     <tag-name>titel</tag-name>
     <source>/tags/Titel.xhtml</source>
+    <attribute>
+      <name>action</name>
+      <type>java.lang.String</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>bean</name>
+      <type>java.lang.Object</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>imgtitle</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>rendered</name>
+      <type>boolean</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>titel</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
   </tag>
 </facelet-taglib>
