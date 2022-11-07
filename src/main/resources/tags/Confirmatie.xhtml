@@ -3,14 +3,14 @@
       xmlns="http://www.w3.org/1999/xhtml"
    xmlns:ui="http://java.sun.com/jsf/facelets">
   <ui:composition xmlns:c="http://java.sun.com/jsp/jstl/core">
-    <c:if test="#{empty buttontext}">
+    <c:if test="${empty buttontekst}">
       <c:set var="buttontext" scope="session" value="button.delete" />
     </c:if>
     <div id="bevestiging" class="modal">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">#{confirmatietitel}</p>
+          <p class="modal-card-title">${titel}</p>
           <button class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">

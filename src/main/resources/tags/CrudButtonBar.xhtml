@@ -7,28 +7,28 @@
     xmlns:t="http://myfaces.apache.org/tomahawk"
    xmlns:ui="http://java.sun.com/jsf/facelets">
   <ui:composition>
-    <c:if test="${empty text}">
-      <ui:param name="text" value="${key}" />
+    <c:if test="${empty tekst}">
+      <ui:param name="tekst" value="${key}" />
     </c:if>
     <div class="field is-grouped">
-      <c:if test="${aktie.nieuw}">
+      <c:if test="${bean.aktie.nieuw}">
         <p class="control">
           <h:commandLink id="save" action="${bean.save}" styleClass="button is-primary">#{i18nTeksten.tekst('button.create')}</h:commandLink>
         </p>
       </c:if>
-      <c:if test="${!aktie.nieuw}">
+      <c:if test="${!bean.aktie.nieuw}">
         <p class="control">
           <h:commandLink id="modify" action="${bean.update(key)}" styleClass="button">#{i18nTeksten.tekst('button.modify')}</h:commandLink>
         </p>
       </c:if>
-      <c:if test="${!aktie.nieuw}">
+      <c:if test="${!bean.aktie.nieuw}">
         <p class="control">
           <h:commandLink id="lnkDelete" action="#{bean.delete(key)}" class="lnkDelete" />
-          <button id="delete" onclick="confirmatie(${form}, '${text}');return false;" class="button js-modal-trigger" data-target="bevestiging">#{i18nTeksten.tekst('button.delete')}</button>
+          <button id="delete" onclick="confirmatie('${form}', '${tekst}');return false;" class="button js-modal-trigger" data-target="bevestiging">#{i18nTeksten.tekst('button.delete')}</button>
         </p>
       </c:if>
       <p class="control">
-        <d:cancel href="${path}/rangen/rangen.xhtml" aktie="${bean.aktie}"/>
+        <d:cancel returnto="${returnto}" aktie="${bean.aktie}"/>
       </p>
     </div>
   </ui:composition>
