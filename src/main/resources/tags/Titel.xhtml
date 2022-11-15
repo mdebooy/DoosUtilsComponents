@@ -9,7 +9,10 @@
       <div class="column is-10">
         <h2>${titel}</h2>
       </div>
-<c:if test="${rendered}">
+<c:if test="${empty rendered}">
+  <ui:param name="rendered" value="false" />
+</c:if>
+<c:if test="${rendered and bean.user}">
   <c:if test="${empty action}">
     <ui:param name="action" value="create" />
   </c:if>
