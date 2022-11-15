@@ -7,29 +7,53 @@
     xmlns:t="http://myfaces.apache.org/tomahawk"
    xmlns:ui="http://java.sun.com/jsf/facelets">
   <ui:composition>
-    <c:if test="${empty tekst}">
-      <ui:param name="tekst" value="${key}" />
+    <c:if test="${empty detail}">
+      <ui:param name="detail" value="false" />
     </c:if>
+
     <div class="field is-grouped">
-      <c:if test="${bean.aktie.nieuw}">
+      <c:if test="${!detail}">
+        <c:if test="${!bean.aktie.bekijk and bean.user}">
+          <p class="control">
+            <h:commandLink id="save" action="${bean.save}" styleClass="button is-primary">${bean.aktie.nieuw ? i18nTeksten.tekst('button.create') : i18nTeksten.tekst('button.save')}</h:commandLink>
+          </p>
+        </c:if>
+        <c:if test="${!bean.aktie.wijzig and bean.user}">
+          <p class="control">
+            <h:commandLink id="modify" action="${bean.update}" styleClass="button">#{i18nTeksten.tekst('button.modify')}</h:commandLink>
+          </p>
+        </c:if>
+        <c:if test="${!bean.aktie.nieuw and bean.user}">
+          <p class="control">
+            <h:commandLink id="lnkDelete" action="#{bean.delete}" class="lnkDelete" />
+            <button id="delete" onclick="confirmatie('${form}', '${tekst}');return false;" class="button js-modal-trigger" data-target="bevestiging">#{i18nTeksten.tekst('button.delete')}</button>
+          </p>
+        </c:if>
         <p class="control">
-          <h:commandLink id="save" action="${bean.save}" styleClass="button is-primary">#{i18nTeksten.tekst('button.create')}</h:commandLink>
+          <d:cancel returnto="${returnto}" aktie="${bean.aktie}"/>
         </p>
       </c:if>
-      <c:if test="${!bean.aktie.nieuw}">
+      <c:if test="${detail}">
+        <c:if test="${!bean.detailAktie.bekijk and bean.user}">
+          <p class="control">
+            <h:commandLink id="save" action="${bean.saveDetail}" styleClass="button is-primary">${bean.detailAktie.nieuw ? i18nTeksten.tekst('button.create') : i18nTeksten.tekst('button.save')}</h:commandLink>
+          </p>
+        </c:if>
+        <c:if test="${!bean.detailAktie.wijzig and bean.user}">
+          <p class="control">
+            <h:commandLink id="modify" action="${bean.updateDetail}" styleClass="button">#{i18nTeksten.tekst('button.modify')}</h:commandLink>
+          </p>
+        </c:if>
+        <c:if test="${!bean.detailAktie.nieuw and bean.user}">
+          <p class="control">
+            <h:commandLink id="lnkDelete" action="#{bean.deleteDetail}" class="lnkDelete" />
+            <button id="delete" onclick="confirmatie('${form}', '${tekst}');return false;" class="button js-modal-trigger" data-target="bevestiging">#{i18nTeksten.tekst('button.delete')}</button>
+          </p>
+        </c:if>
         <p class="control">
-          <h:commandLink id="modify" action="${bean.update(key)}" styleClass="button">#{i18nTeksten.tekst('button.modify')}</h:commandLink>
+          <d:cancel returnto="${returnto}" aktie="${bean.detailAktie}"/>
         </p>
       </c:if>
-      <c:if test="${!bean.aktie.nieuw}">
-        <p class="control">
-          <h:commandLink id="lnkDelete" action="#{bean.delete(key)}" class="lnkDelete" />
-          <button id="delete" onclick="confirmatie('${form}', '${tekst}');return false;" class="button js-modal-trigger" data-target="bevestiging">#{i18nTeksten.tekst('button.delete')}</button>
-        </p>
-      </c:if>
-      <p class="control">
-        <d:cancel returnto="${returnto}" aktie="${bean.aktie}"/>
-      </p>
     </div>
   </ui:composition>
 </html>

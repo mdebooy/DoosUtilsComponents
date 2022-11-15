@@ -58,13 +58,13 @@
       <required>true</required>
     </attribute>
     <attribute>
-      <name>form</name>
-      <type>java.lang.String</type>
-      <required>true</required>
+      <name>detail</name>
+      <type>boolean</type>
+      <required>false</required>
     </attribute>
     <attribute>
-      <name>key</name>
-      <type>java.lang.Object</type>
+      <name>form</name>
+      <type>java.lang.String</type>
       <required>true</required>
     </attribute>
     <attribute>
@@ -75,7 +75,7 @@
     <attribute>
       <name>tekst</name>
       <type>java.lang.String</type>
-      <required>false</required>
+      <required>true</required>
     </attribute>
   </tag>
   <tag>
@@ -89,6 +89,46 @@
   <tag>
     <tag-name>listbox</tag-name>
     <source>/tags/Listbox.xhtml</source>
+    <attribute>
+      <name>converter</name>
+      <type>java.lang.Object</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>fullwidth</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>id</name>
+      <type>java.lang.Object</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>items</name>
+      <type>java.lang.Object</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>readonly</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>required</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>textvalue</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>value</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
   </tag>
   <tag>
     <tag-name>loggingtable</tag-name>
@@ -165,7 +205,7 @@
     <attribute>
       <name>rendered</name>
       <type>boolean</type>
-      <required>true</required>
+      <required>false</required>
     </attribute>
     <attribute>
       <name>titel</name>
