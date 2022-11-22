@@ -3,6 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
     xmlns:c="http://java.sun.com/jsp/jstl/core"
     xmlns:d="http://java.debooy.eu/jsf/facelets"
+   xmlns:fn="http://java.sun.com/jsp/jstl/functions"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:t="http://myfaces.apache.org/tomahawk"
    xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -26,7 +27,8 @@
         <c:if test="${!bean.aktie.nieuw and bean.user}">
           <p class="control">
             <h:commandLink id="lnkDelete" action="#{bean.delete}" class="lnkDelete" />
-            <button id="delete" onclick="confirmatie('${form}', '${tekst}');return false;" class="button js-modal-trigger" data-target="bevestiging">#{i18nTeksten.tekst('button.delete')}</button>
+            <c:set var="tekst2" value="${fn:replace(tekst, '\'', '&quot;')}" />
+            <button id="delete" onclick="confirmatie('${form}', '${tekst2}');return false;" class="button js-modal-trigger" data-target="bevestiging">#{i18nTeksten.tekst('button.delete')}</button>
           </p>
         </c:if>
         <p class="control">
