@@ -81,6 +81,31 @@
   <tag>
     <tag-name>datum</tag-name>
     <source>/tags/Datum.xhtml</source>
+    <attribute>
+      <name>id</name>
+      <type>java.lang.Object</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>pattern</name>
+      <type>String</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>readonly</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>required</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>value</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
   </tag>
   <tag>
     <tag-name>footer</tag-name>

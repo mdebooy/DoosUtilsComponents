@@ -29,7 +29,7 @@
       </div>
     </c:if>
     <c:if test="${readonly}">
-      <t:inputText id="${id}" styleClass="${styleClass}" value="${textvalue}" readonly="true" />
+      <t:inputText id="${id}" styleClass="${styleClass}${fullwidth ? ' is-fullwidth' : ''}" value="${textvalue}" readonly="true" />
     </c:if>
   </ui:composition>
 </html>
