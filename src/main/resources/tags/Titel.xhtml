@@ -9,19 +9,6 @@
       <div class="column is-10">
         <h2>${titel}</h2>
       </div>
-<c:if test="${empty rendered}">
-  <ui:param name="rendered" value="false" />
-</c:if>
-<c:if test="${rendered and bean.user}">
-  <c:if test="${empty action}">
-    <ui:param name="action" value="create" />
-  </c:if>
-      <div class="column is-2 has-text-right" >
-        <h:commandLink action="#{bean[action]}">
-          <img src="/common/images/32x32/actions/document-new.png" alt="${imgtitle}" title="${imgtitle}" />
-        </h:commandLink>
-      </div>
-</c:if>
     </div>
   </ui:composition>
 </html>

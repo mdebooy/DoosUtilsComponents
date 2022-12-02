@@ -213,26 +213,6 @@
     <tag-name>titel</tag-name>
     <source>/tags/Titel.xhtml</source>
     <attribute>
-      <name>action</name>
-      <type>java.lang.String</type>
-      <required>false</required>
-    </attribute>
-    <attribute>
-      <name>bean</name>
-      <type>java.lang.Object</type>
-      <required>true</required>
-    </attribute>
-    <attribute>
-      <name>imgtitle</name>
-      <type>java.lang.String</type>
-      <required>true</required>
-    </attribute>
-    <attribute>
-      <name>rendered</name>
-      <type>boolean</type>
-      <required>false</required>
-    </attribute>
-    <attribute>
       <name>titel</name>
       <type>java.lang.String</type>
       <required>true</required>
