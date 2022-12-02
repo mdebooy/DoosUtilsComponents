@@ -27,6 +27,9 @@ public final class ComponentsConstants {
   public static final String  UNDEFINED = "undefined";
 
   public static final String  DEFAULT_TAAL  = "default.taal";
+  public static final String  FOUTEACTIE    = "errors.aktie.wrong";
+  public static final String  GEENPARAMETER = "errors.notfound.parameter";
+  public static final String  GEENRECHTEN   = "errors.no.rights";
   public static final String  WRONGREDIRECT = "errors.redirect.wrong";
 
   public static final String  ERR_RUNTIME = "RT: %s";
