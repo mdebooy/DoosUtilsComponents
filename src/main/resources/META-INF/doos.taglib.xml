@@ -59,7 +59,7 @@
     </attribute>
     <attribute>
       <name>detail</name>
-      <type>boolean</type>
+      <type>java.lang.String</type>
       <required>false</required>
     </attribute>
     <attribute>

@@ -9,53 +9,39 @@
    xmlns:ui="http://java.sun.com/jsf/facelets">
   <ui:composition>
     <c:if test="${empty detail}">
-      <ui:param name="detail" value="false" />
+      <c:set var="lower" value="aktie" />
+      <c:set var="initcap" value="" />
     </c:if>
+    <c:if test="${!empty detail}">
+      <c:set var="lower" value="${fn:toLowerCase(detail)}Aktie" />
+      <c:set var="initcap" value="${fn:toUpperCase(fn:substring(detail, 0, 1))}${fn:toLowerCase(fn:substring(detail, 1, fn:length(detail)))}" />
+    </c:if>
+    <ui:param name="action" value="${bean[lower]}" />
+    <ui:param name="aktieDelete" value="delete${initcap}" />
+    <ui:param name="aktieSave" value="save${initcap}" />
+    <ui:param name="aktieUpdate" value="update${initcap}" />
 
     <div class="field is-grouped">
-      <c:if test="${!detail}">
-        <c:if test="${!bean.aktie.bekijk and bean.user}">
-          <p class="control">
-            <h:commandLink id="save" action="${bean.save}" styleClass="button is-primary">${bean.aktie.nieuw ? i18nTeksten.tekst('button.create') : i18nTeksten.tekst('button.save')}</h:commandLink>
-          </p>
-        </c:if>
-        <c:if test="${!bean.aktie.wijzig and bean.user}">
-          <p class="control">
-            <h:commandLink id="modify" action="${bean.update}" styleClass="button">#{i18nTeksten.tekst('button.modify')}</h:commandLink>
-          </p>
-        </c:if>
-        <c:if test="${!bean.aktie.nieuw and bean.user}">
-          <p class="control">
-            <h:commandLink id="lnkDelete" action="#{bean.delete}" class="lnkDelete" />
-            <c:set var="tekst2" value="${fn:replace(tekst, '\'', '&quot;')}" />
-            <button id="delete" onclick="confirmatie('${form}', '${tekst2}');return false;" class="button js-modal-trigger" data-target="bevestiging">#{i18nTeksten.tekst('button.delete')}</button>
-          </p>
-        </c:if>
+      <c:if test="${!action.bekijk and bean.user}">
         <p class="control">
-          <d:cancel returnto="${returnto}" aktie="${bean.aktie}"/>
+          <h:commandLink id="save" action="#{bean[aktieSave]}" styleClass="button is-primary">${action.nieuw ? i18nTeksten.tekst('button.create') : i18nTeksten.tekst('button.save')}</h:commandLink>
         </p>
       </c:if>
-      <c:if test="${detail}">
-        <c:if test="${!bean.detailAktie.bekijk and bean.user}">
-          <p class="control">
-            <h:commandLink id="save" action="${bean.saveDetail}" styleClass="button is-primary">${bean.detailAktie.nieuw ? i18nTeksten.tekst('button.create') : i18nTeksten.tekst('button.save')}</h:commandLink>
-          </p>
-        </c:if>
-        <c:if test="${!bean.detailAktie.wijzig and bean.user}">
-          <p class="control">
-            <h:commandLink id="modify" action="${bean.updateDetail}" styleClass="button">#{i18nTeksten.tekst('button.modify')}</h:commandLink>
-          </p>
-        </c:if>
-        <c:if test="${!bean.detailAktie.nieuw and bean.user}">
-          <p class="control">
-            <h:commandLink id="lnkDelete" action="#{bean.deleteDetail}" class="lnkDelete" />
-            <button id="delete" onclick="confirmatie('${form}', '${tekst}');return false;" class="button js-modal-trigger" data-target="bevestiging">#{i18nTeksten.tekst('button.delete')}</button>
-          </p>
-        </c:if>
+      <c:if test="${action.bekijk and bean.user}">
         <p class="control">
-          <d:cancel returnto="${returnto}" aktie="${bean.detailAktie}"/>
+          <h:commandLink id="modify" action="#{bean[aktieUpdate]}" styleClass="button">#{i18nTeksten.tekst('button.modify')}</h:commandLink>
         </p>
       </c:if>
+      <c:if test="${!action.nieuw and bean.user}">
+        <p class="control">
+          <h:commandLink id="lnkDelete" action="${bean[aktieDelete]}" class="lnkDelete" />
+          <c:set var="tekst2" value="${fn:replace(tekst, '\'', '&quot;')}" />
+          <button id="delete" onclick="confirmatie('${form}', '${tekst2}');return false;" class="button js-modal-trigger" data-target="bevestiging">#{i18nTeksten.tekst('button.delete')}</button>
+        </p>
+      </c:if>
+      <p class="control">
+        <d:cancel returnto="${returnto}" aktie="${action}"/>
+      </p>
     </div>
   </ui:composition>
 </html>
