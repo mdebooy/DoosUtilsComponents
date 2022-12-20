@@ -5,50 +5,102 @@
     xmlns:t="http://myfaces.apache.org/tomahawk"
    xmlns:ui="http://java.sun.com/jsf/facelets">
   <ui:composition>
-            <div class="form-group form-group-sm row">
-              <label for="logtime" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.logtime')}</label>
-              <div class="col-3">
-                <t:inputText styleClass="form-control form-control-sm" value="#{log.logtime}" maxlength="25" size="25" readonly="true">
-                  <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss.SSS" timeZone="#{gebruiker.timeZone}" />
-                </t:inputText>
-              </div>
-              <label for="lvl" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.loglevel')}</label>
-              <div class="col-3">
-                <t:inputText id="lvl" styleClass="form-control form-control-sm" value="#{log.lvl}" maxlength="15" size="15" readonly="true" />
-              </div>
-            </div>
-            <div class="form-group form-group-sm row">
-              <label for="loggerclass" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.loggerclass')}</label>
-              <div class="col-10">
-                <t:inputText id="loggerclass" styleClass="form-control form-control-sm" value="#{log.loggerclass}" maxlength="100" size="100" readonly="true" />
-              </div>
-            </div>
-            <div class="form-group form-group-sm row">
-              <label for="sourceclass" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.sourceclass')}</label>
-              <div class="col-10">
-                <t:inputText id="sourceclass" styleClass="form-control form-control-sm" value="#{log.sourceclass}" maxlength="100" size="100" readonly="true" />
-              </div>
-            </div>
-            <div class="form-group form-group-sm row">
-              <label for="sourcemethod" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.sourcemethod')}</label>
-              <div class="col-10">
-                <t:inputText id="sourcemethod" styleClass="form-control form-control-sm" value="#{log.sourcemethod}" maxlength="100" size="100" readonly="true" />
-              </div>
-            </div>
-            <div class="form-group form-group-sm row">
-              <label for="message" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.message')}</label>
-              <div class="col-10">
-                <t:inputTextarea styleClass="form-control form-control-sm" value="#{log.message}" cols="100" rows="5" readonly="true" />
-              </div>
-            </div>
-            <div class="form-group form-group-sm row">
-              <label for="seq" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.seq')}</label>
-              <div class="col-3">
-                <t:inputText id="seq" styleClass="form-control form-control-sm" value="#{log.seq}" maxlength="15" size="15" readonly="true" />
-              </div>
-              <label for="threadId" class="col-2 col-form-label col-form-label-sm">#{i18nTeksten.tekst('label.threadId')}</label>
-              <div class="col-3">
-                <t:inputText id="threadId" styleClass="form-control form-control-sm" value="#{log.threadId}" maxlength="15" size="15" readonly="true" />
+            <div class="columns is-centered">
+              <div class="column">
+                <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label class="label">#{i18nTeksten.tekst('label.logtime')}</label>
+                  </div>
+                  <div class="field-body is-normal">
+                    <div class="field">
+                      <div class="control">
+                        <t:inputText styleClass="input" value="#{log.logtime}" maxlength="25" size="25" readonly="true">
+                          <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss.SSS" timeZone="#{gebruiker.timeZone}" />
+                        </t:inputText>
+                      </div>
+                    </div>
+                    <div class="field-label is-normal">
+                      <label class="label">#{i18nTeksten.tekst('label.loglevel')}</label>
+                    </div>
+                    <div class="field-body is-normal">
+                      <div class="field">
+                        <div class="control">
+                          <t:inputText id="lvl" styleClass="input" value="#{log.lvl}" maxlength="15" size="15" readonly="true" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label class="label">#{i18nTeksten.tekst('label.loggerclass')}</label>
+                  </div>
+                  <div class="field-body is-normal">
+                    <div class="field">
+                      <div class="control">
+                        <t:inputText id="loggerclass" styleClass="input" value="#{log.loggerclass}" maxlength="100" size="100" readonly="true" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label class="label">#{i18nTeksten.tekst('label.sourceclass')}</label>
+                  </div>
+                  <div class="field-body is-normal">
+                    <div class="field">
+                      <div class="control">
+                        <t:inputText id="sourceclass" styleClass="input" value="#{log.sourceclass}" maxlength="100" size="100" readonly="true" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label class="label">#{i18nTeksten.tekst('label.sourcemethod')}</label>
+                  </div>
+                  <div class="field-body is-normal">
+                    <div class="field">
+                      <div class="control">
+                        <t:inputText id="sourcemethod" styleClass="input" value="#{log.sourcemethod}" maxlength="100" size="100" readonly="true" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label class="label">#{i18nTeksten.tekst('label.message')}</label>
+                  </div>
+                  <div class="field-body is-normal">
+                    <div class="field">
+                      <div class="control">
+                        <t:inputTextarea id="message" styleClass="input" value="#{log.message}" cols="100" rows="5" readonly="true" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label class="label">#{i18nTeksten.tekst('label.seq')}</label>
+                  </div>
+                  <div class="field-body is-normal">
+                    <div class="field">
+                      <div class="control">
+                        <t:inputText id="seq" styleClass="input" value="#{log.seq}" maxlength="15" size="15" readonly="true" />
+                      </div>
+                    </div>
+                    <div class="field-label is-normal">
+                      <label class="label">#{i18nTeksten.tekst('label.threadId')}</label>
+                    </div>
+                    <div class="field-body is-normal">
+                      <div class="field">
+                        <div class="control">
+                          <t:inputText id="threadId" styleClass="input" value="#{log.threadId}" maxlength="15" size="15" readonly="true" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
   </ui:composition>
