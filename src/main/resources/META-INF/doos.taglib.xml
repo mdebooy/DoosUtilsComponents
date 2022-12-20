@@ -58,6 +58,11 @@
       <required>true</required>
     </attribute>
     <attribute>
+      <name>delete</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
       <name>detail</name>
       <type>java.lang.String</type>
       <required>false</required>
@@ -179,7 +184,7 @@
     <attribute>
       <name>logo</name>
       <type>java.lang.String</type>
-      <required>true</required>
+      <required>false</required>
     </attribute>
     <attribute>
       <name>path</name>

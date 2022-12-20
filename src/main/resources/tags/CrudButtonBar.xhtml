@@ -8,6 +8,9 @@
     xmlns:t="http://myfaces.apache.org/tomahawk"
    xmlns:ui="http://java.sun.com/jsf/facelets">
   <ui:composition>
+    <c:if test="${empty delete}">
+      <c:set var="delete" value="true" />
+    </c:if>
     <c:if test="${empty detail}">
       <c:set var="lower" value="aktie" />
       <c:set var="initcap" value="" />
@@ -32,7 +35,7 @@
           <h:commandLink id="modify" action="#{bean[aktieUpdate]}" styleClass="button">#{i18nTeksten.tekst('button.modify')}</h:commandLink>
         </p>
       </c:if>
-      <c:if test="${!action.nieuw and bean.user}">
+      <c:if test="${delete and !action.nieuw and bean.user}">
         <p class="control">
           <h:commandLink id="lnkDelete" action="${bean[aktieDelete]}" class="lnkDelete" />
           <c:set var="tekst2" value="${fn:replace(tekst, '\'', '&quot;')}" />
