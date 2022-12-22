@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html  lang="#{gebruiker.locale.language}"
+      xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:t="http://myfaces.apache.org/tomahawk"
+   xmlns:ui="http://java.sun.com/jsf/facelets">
+  <ui:composition>
+    <c:if test="${empty disabled}">
+      <ui:param name="disabled" value="false" />
+    </c:if>
+    <div class="field">
+      <div class="checkbox">
+        <t:selectBooleanCheckbox id="${id}" value="${value}" disabled="#{disabled}" />
+      </div>
+    </div>
+  </ui:composition>
+</html>

@@ -117,6 +117,79 @@
     <source>/tags/Footer.xhtml</source>
   </tag>
   <tag>
+    <tag-name>inputText</tag-name>
+    <source>/tags/InputText.xhtml</source>
+    <attribute>
+      <name>id</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>maxlength</name>
+      <type>java.lang.Integer</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>readonly</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>required</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>size</name>
+      <type>java.lang.Integer</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>type</name>
+      <type>java.lang.String</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>value</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+  </tag>
+  <tag>
+    <tag-name>inputTextarea</tag-name>
+    <source>/tags/InputTextarea.xhtml</source>
+    <attribute>
+      <name>cols</name>
+      <type>java.lang.Integer</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>id</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>readonly</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>required</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>rows</name>
+      <type>java.lang.Integer</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>value</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+  </tag>
+  <tag>
     <tag-name>label</tag-name>
     <source>/tags/Label.xhtml</source>
     <attribute>
@@ -140,7 +213,7 @@
     </attribute>
     <attribute>
       <name>id</name>
-      <type>java.lang.Object</type>
+      <type>java.lang.String</type>
       <required>true</required>
     </attribute>
     <attribute>
@@ -212,6 +285,25 @@
       <name>aantal</name>
       <type>java.lang.Integer</type>
       <required>false</required>
+    </attribute>
+  </tag>
+  <tag>
+    <tag-name>selectBooleanCheckbox</tag-name>
+    <source>/tags/SelectBooleanCheckbox.xhtml</source>
+    <attribute>
+      <name>disabled</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>id</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>value</name>
+      <type>boolean</type>
+      <required>true</required>
     </attribute>
   </tag>
   <tag>

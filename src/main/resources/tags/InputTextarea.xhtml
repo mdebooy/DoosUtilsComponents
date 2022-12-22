@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html  lang="#{gebruiker.locale.language}"
+      xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:t="http://myfaces.apache.org/tomahawk"
+   xmlns:ui="http://java.sun.com/jsf/facelets">
+  <ui:composition>
+    <c:if test="${!empty cols}">
+      <ui:param name="cols" value=" cols=${rows}" />
+    </c:if>
+    <c:if test="${empty readonly}">
+      <ui:param name="readonly" value="false" />
+    </c:if>
+    <c:if test="${empty required}">
+      <ui:param name="styleClass" value="input" />
+    </c:if>
+    <c:if test="${!empty required}">
+      <ui:param name="styleClass" value="input required" />
+    </c:if>
+    <c:if test="${!empty rows}">
+      <ui:param name="rows" value=" rows=${rows}" />
+    </c:if>
+    <div class="field">
+      <div class="control">
+        <t:inputTextarea id="${id}" styleClass="${styleClass}" value="${value}" readonly="${readonly}" />
+      </div>
+    </div>
+  </ui:composition>
+</html>
