@@ -117,6 +117,15 @@
     <source>/tags/Footer.xhtml</source>
   </tag>
   <tag>
+    <tag-name>label</tag-name>
+    <source>/tags/Label.xhtml</source>
+    <attribute>
+      <name>label</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+  </tag>
+  <tag>
     <tag-name>listbox</tag-name>
     <source>/tags/Listbox.xhtml</source>
     <attribute>
