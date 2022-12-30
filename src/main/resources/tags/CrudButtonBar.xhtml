@@ -27,19 +27,19 @@
     <div class="field is-grouped">
       <c:if test="${!action.bekijk and bean.user}">
         <p class="control">
-          <h:commandLink id="save" action="#{bean[aktieSave]}" styleClass="button is-primary">${action.nieuw ? i18nTeksten.tekst('button.create') : i18nTeksten.tekst('button.save')}</h:commandLink>
+          <h:commandLink id="save" action="#{bean[aktieSave]}" styleClass="button is-primary is-small">${action.nieuw ? i18nTeksten.tekst('button.create') : i18nTeksten.tekst('button.save')}</h:commandLink>
         </p>
       </c:if>
       <c:if test="${action.bekijk and bean.user}">
         <p class="control">
-          <h:commandLink id="modify" action="#{bean[aktieUpdate]}" styleClass="button">#{i18nTeksten.tekst('button.modify')}</h:commandLink>
+          <h:commandLink id="modify" action="#{bean[aktieUpdate]}" styleClass="button is-small">#{i18nTeksten.tekst('button.modify')}</h:commandLink>
         </p>
       </c:if>
       <c:if test="${delete and !action.nieuw and bean.user}">
         <p class="control">
           <h:commandLink id="lnkDelete" action="${bean[aktieDelete]}" class="lnkDelete" />
           <c:set var="tekst2" value="${fn:replace(tekst, '\'', '&quot;')}" />
-          <button id="delete" onclick="confirmatie('${form}', '${tekst2}');return false;" class="button js-modal-trigger" data-target="bevestiging">#{i18nTeksten.tekst('button.delete')}</button>
+          <button id="delete" onclick="confirmatie('${form}', '${tekst2}');return false;" class="button is-small js-modal-trigger" data-target="bevestiging">#{i18nTeksten.tekst('button.delete')}</button>
         </p>
       </c:if>
       <p class="control">

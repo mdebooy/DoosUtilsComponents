@@ -17,16 +17,14 @@
     <c:if test="${!empty required}">
       <ui:param name="styleClass" value="input required" />
     </c:if>
-    <div class="field-body">
-      <div class="field has-addons">
-        <div class="control has-icons-right">
-          <t:inputText id="${id}" styleClass="${styleClass}" value="${value}" readonly="${readonly}">
-            <f:convertDateTime type="date" pattern="${pattern}" timeZone="#{gebruiker.timeZone}" />
-          </t:inputText>
-          <span class="icon is-right">
-            <span class="fas fa-calendar-alt"></span>
-          </span>
-        </div>
+    <div class="field has-addons">
+      <div class="control has-icons-right">
+        <t:inputText id="${id}" styleClass="${styleClass}" value="${value}" readonly="${readonly}">
+          <f:convertDateTime type="date" pattern="${pattern}" timeZone="#{gebruiker.timeZone}" />
+        </t:inputText>
+        <span class="icon is-right">
+          <span class="fas fa-calendar-alt"></span>
+        </span>
       </div>
     </div>
   </ui:composition>
