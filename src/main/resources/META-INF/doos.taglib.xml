@@ -117,6 +117,35 @@
     <source>/tags/Footer.xhtml</source>
   </tag>
   <tag>
+    <tag-name>inputFileUpload</tag-name>
+    <source>/tags/InputFileUpload.xhtml</source>
+    <attribute>
+      <name>fullwidth</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>id</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>label</name>
+      <type>java.lang.String</type>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>readonly</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>value</name>
+      <type>java.lang.String</type>
+      <required>false</required>
+    </attribute>
+  </tag>
+  <tag>
     <tag-name>inputText</tag-name>
     <source>/tags/InputText.xhtml</source>
     <attribute>
@@ -142,6 +171,11 @@
     <attribute>
       <name>size</name>
       <type>java.lang.Integer</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>styleClass</name>
+      <type>java.lang.String</type>
       <required>false</required>
     </attribute>
     <attribute>

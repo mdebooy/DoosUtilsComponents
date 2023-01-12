@@ -5,21 +5,24 @@
     xmlns:t="http://myfaces.apache.org/tomahawk"
    xmlns:ui="http://java.sun.com/jsf/facelets">
   <ui:composition>
+    <c:if test="${empty styleClass}">
+      <ui:param name="styleClass" value="" />
+    </c:if>
     <c:if test="${empty readonly}">
       <ui:param name="readonly" value="false" />
     </c:if>
     <c:if test="${empty required}">
-      <ui:param name="styleClass" value="input" />
+      <ui:param name="required" value="false" />
     </c:if>
-    <c:if test="${!empty required}">
-      <ui:param name="styleClass" value="input required" />
+    <c:if test="${required}">
+      <ui:param name="styleClass" value="${styleClass} required" />
     </c:if>
     <c:if test="${empty type}">
       <ui:param name="type" value="text" />
     </c:if>
     <div class="field">
       <div class="control">
-        <t:inputText id="${id}" styleClass="${styleClass}" value="${value}" maxlength="${maxlength}" size="${size}" readonly="${readonly}" />
+        <t:inputText id="${id}" styleClass="input ${styleClass}" value="${value}" maxlength="${maxlength}" size="${size}" readonly="${readonly}" />
       </div>
     </div>
   </ui:composition>
