@@ -5,36 +5,13 @@
     xmlns:t="http://myfaces.apache.org/tomahawk"
    xmlns:ui="http://java.sun.com/jsf/facelets">
   <ui:composition>
-    <c:if test="${empty fullwidth}">
-      <ui:param name="fullwidth" value="false" />
-    </c:if>
     <c:if test="${empty readonly}">
       <ui:param name="readonly" value="false" />
     </c:if>
     <div class="field">
       <div class="control">
-        <div id="upload-file" class="file has-name${fullwidth ? ' is-fullwidth' : ''}">
-          <label class="file-label">
-            <c:if test="${readonly}">
-              <input id="${id}" type="file" name="${id}" class="file-input" disabled="true" />
-            </c:if>
-            <c:if test="${!readonly}">
-              <input id="${id}" type="file" name="${id}" class="file-input" />
-            </c:if>
-            <span class="file-cta">
-              <span class="file-icon">
-                <i class="fas fa-upload"></i>
-              </span>
-              <span class="file-label">
-                ${label}
-              </span>
-            </span>
-            <span class="file-name">
-              ${value}
-            </span>
-          </label>
+        <t:inputFileUpload id="${id}" value="${value}" readonly="${readonly}" required="true" size="100" />
         </div>
       </div>
-    </div>
   </ui:composition>
 </html>

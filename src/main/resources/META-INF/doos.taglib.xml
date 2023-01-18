@@ -120,6 +120,11 @@
     <tag-name>inputFileUpload</tag-name>
     <source>/tags/InputFileUpload.xhtml</source>
     <attribute>
+      <name>form</name>
+      <type>java.lang.String</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
       <name>fullwidth</name>
       <type>boolean</type>
       <required>false</required>
@@ -136,6 +141,11 @@
     </attribute>
     <attribute>
       <name>readonly</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
+      <name>required</name>
       <type>boolean</type>
       <required>false</required>
     </attribute>
