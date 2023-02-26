@@ -78,9 +78,19 @@
       <required>true</required>
     </attribute>
     <attribute>
+      <name>save</name>
+      <type>boolean</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
       <name>tekst</name>
       <type>java.lang.String</type>
       <required>true</required>
+    </attribute>
+    <attribute>
+      <name>update</name>
+      <type>boolean</type>
+      <required>false</required>
     </attribute>
   </tag>
   <tag>
