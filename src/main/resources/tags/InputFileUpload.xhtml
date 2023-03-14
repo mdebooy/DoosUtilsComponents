@@ -8,9 +8,12 @@
     <c:if test="${empty readonly}">
       <ui:param name="readonly" value="false" />
     </c:if>
+    <c:if test="${empty required}">
+      <ui:param name="required" value="false" />
+    </c:if>
     <div class="field">
       <div class="control">
-        <t:inputFileUpload id="${id}" value="${value}" readonly="${readonly}" required="true" size="100" />
+        <t:inputFileUpload id="${id}" value="${value}" readonly="${readonly}" required="${required}" size="100" />
         </div>
       </div>
   </ui:composition>
