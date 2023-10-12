@@ -13,13 +13,14 @@
     </c:if>
     <c:if test="${empty required}">
       <ui:param name="styleClass" value="input" />
+      <ui:param name="required" value="false" />
     </c:if>
-    <c:if test="${!empty required}">
+    <c:if test="${required}">
       <ui:param name="styleClass" value="input required" />
     </c:if>
     <div class="field has-addons">
       <div class="control has-icons-right">
-        <t:inputText id="${id}" styleClass="${styleClass}" value="${value}" readonly="${readonly}">
+        <t:inputText id="${id}" styleClass="${styleClass}" value="${value}" readonly="${readonly}" required="${required}">
           <f:convertDateTime type="date" pattern="${pattern}" timeZone="#{gebruiker.timeZone}" />
         </t:inputText>
         <span class="icon is-right">
