@@ -247,6 +247,11 @@
     <tag-name>label</tag-name>
     <source>/tags/Label.xhtml</source>
     <attribute>
+      <name>id</name>
+      <type>java.lang.Object</type>
+      <required>false</required>
+    </attribute>
+    <attribute>
       <name>label</name>
       <type>java.lang.String</type>
       <required>true</required>
